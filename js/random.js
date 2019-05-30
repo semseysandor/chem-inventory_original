@@ -56,3 +56,19 @@ function getCompoundInfo() {
 	// Set cursor for progress
 	document.body.style.cursor = 'progress';
 }
+
+/**
+ * Inactivate
+ *
+ * @param		int			bid		batch ID
+ * @param		int			pid		pack ID
+ * @param		string				barcode
+ */
+function inactivate(bid, pid, barcode) {
+
+	var url = 'exec/inactivate.php?bid=' + bid + '&pid=' + pid;
+
+	if (confirm('Valóban töröljük?') == true) {
+		executeServer(url, 'msg_center', retrieveData, 'exec/search.php?q=' + barcode, 'index');
+	}
+}
