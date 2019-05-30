@@ -1,0 +1,53 @@
+/**
+ * Stylesheet for LelTar
+ *
+ * Forms
+ *********************************************************/
+
+/*
+ * Search
+ ************/
+form.search input[type=text] {
+	width: 200px;
+	border: .06em solid black;
+	border-radius: .25em;
+	}
+
+/*
+ * Login
+ ************/
+form.login input {
+	border: .06em solid black;
+	border-radius: .25em;
+}
+
+/*
+ * General
+ ************/
+
+input[type=text],
+input[type=password],
+input[type=date],
+form select,
+form textarea {
+	padding: .25em;
+	border: .06em solid black;
+	border-radius: .25em;
+}
+input:required, select:required {border: 0.06em solid red;}
+
+form
+input[type=text],
+input[type=password],
+input[type=date] {
+	width: 200px;
+}
+
+form textarea {
+	width: 300px;
+	height: 5em;
+	resize: none;
+	margin: auto;
+}
+
+form input[type=checkbox] {padding: .25em;}

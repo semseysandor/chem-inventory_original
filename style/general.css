@@ -1,0 +1,66 @@
+/**
+ * Stylesheet for LelTar
+ *
+ * General
+ */
+
+/*
+ * Body
+ *********************************************************/
+
+body {
+	background: rgb(245, 245, 245);
+	font-family: Tahoma, Geneva, sans-serif;
+	max-width: 98%;
+	margin: auto;
+}
+
+/*
+ * Quick styles
+ *********************************************************/
+
+/* Padding */
+.pad-no {padding: none;}
+.pad-xs {padding: .12em;}
+.pad-s {padding: .25em;}
+.pad-m {padding: .5em;}
+.pad-l {padding: 1em;}
+
+/* Font size */
+.font-s {font-size: .9em;}
+.font-m {font-size: 1em;}
+.font-l {font-size: 1.2em;}
+
+/* Font weight */
+.normal {font-weight: normal;}
+.bold {font-weight: bold;}
+
+/* Text align */
+.left {text-align: left;}
+.right {text-align: right;}
+.centered {text-align: center;}
+
+/* Text color */
+.black {color: black;}
+.red {color: red;}
+.green {color: forestgreen;}
+
+/* Floats */
+.float-left {
+	display: inline-block;
+	float: left;
+}
+.float-right {
+	display: inline-block;
+	float: right;
+}
+
+/* Cursor */
+.cursor-pointer {cursor: pointer;}
+.cursor-def {cursor: default;}
+
+/* Display */
+.no-show {display:none;}
+
+/* Hover */
+.hover {visibility: hidden;}

@@ -1,0 +1,84 @@
+/**
+ * Stylesheet for LelTar
+ *
+ * Tables
+ *********************************************************/
+
+/* General */
+table {
+	overflow-x: visible;
+	overflow-y: visible;
+	display: block;
+	border-collapse: collapse;
+}
+
+/*
+ * Form tables
+ *******************/
+
+table.form caption {
+	border-bottom: .06em solid black;
+	padding: .25em;
+}
+table.form th {
+	font-weight: normal;
+	text-align: right;
+	padding: .25em;
+}
+table.form td {padding: .25em;}
+
+/*
+ * Compound details
+ *******************/
+
+table.comp_det caption {
+	background: wheat;
+	border-radius: .5em .5em 0 0;
+	border-bottom: .15em solid black;
+	padding: .25em .5em;
+}
+table.comp_det th, td {padding: .25em .5em;}
+table.comp_det tr {border-bottom: .08em solid black;}
+table.comp_det th {text-align: right;}
+
+table.comp_det tr:nth-child(even) {background: rgb(235, 235, 235);}
+
+/*
+ * Lists
+ *******************/
+
+table.list>thead>tr>th {
+	background: wheat;
+	padding: .25em .5em;
+	font-weight: normal;
+}
+table.list>thead>tr{border-bottom: .15em solid black;}
+table.list>thead>tr>th:first-child {border-radius: .5em 0 0 0;}
+table.list>thead>tr>th:last-child {border-radius: 0 .5em 0 0;}
+
+table.list>tbody>tr>td {
+	border-bottom: .06em solid black;
+	padding: .25em;
+}
+
+table.list>tbody>tr:nth-child(4n+3) {background: rgb(235, 235, 235);}
+table.list>tbody>tr:nth-child(odd):hover>td {background: yellow;}
+
+table.list>tbody>tr:hover>td>*>* {visibility: visible;}
+
+/*
+ * Change details
+ *******************/
+table.change_details {table-layout:fixed;}
+table.change_details thead th {
+	background: wheat;
+	border: .06em solid black;
+	border-bottom: .12em solid black;
+}
+table.change_details tbody td {
+	max-width: 200px;
+	word-wrap: break-word;
+	border: .06em solid black;
+	padding: 0 .25em;
+}
+table.change_details tr {background: rgb(245, 245, 245);}
