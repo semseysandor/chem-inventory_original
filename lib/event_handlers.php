@@ -127,9 +127,7 @@ function js_spec($select, array $p = NULL) {
 		break;
 
 	case 'inactivate':
-		$js = 'onclick="alert(\'really\')"';
-		//$js = $exec.'inactivate.php?bid='.$p[0].'&pid='.$p[1].'\', \'msg_center\',';
-		//$js .= 'retrieveData, \'exec/search.php?q='.$p[2].'\', \'index\')"';
+		$js = 'onclick="inactivate('.$p[0].','.$p[1].',\''.$p[2].'\')"';
 		break;
 
 	// Forms
