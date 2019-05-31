@@ -1,2 +1,4 @@
 # LelTar
 change
+makimajom
+lalipapi
