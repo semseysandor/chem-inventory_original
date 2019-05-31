@@ -12,12 +12,33 @@ function dropDown(element) {
 	var content = document.getElementById(element);
 
 	if (content.style.display == 'inline-block') { // If opened
-		content.style.display = 'none'; // Close it
+
+		hide(content) // Close it
+
 	} else { // If not opened
+
 		closeAllDropDown(); // Close other dropdowns
-		content.style.display = 'inline-block'; // Open this one
+		show(content) // Open this one
 	}
 }
+
+/**
+ * Show an element
+ *
+ * @param		element
+ */
+function show(elem) {
+	elem.style.display = 'inline-block';
+};
+
+/**
+ * Hide an element
+ *
+ * @param		element
+ */
+function hide(elem) {
+	elem.style.display = 'none';
+};
 
 /**
  * Close all dropdown on page

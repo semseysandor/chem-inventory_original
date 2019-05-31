@@ -274,5 +274,15 @@ try {
 		echo $response;
 
 	}
+
+	// Live search
+	if ($query == 'live_search') {
+
+		// Get search
+		$search = get_query('search', FALSE, 'string');
+		
+		echo $search;
+
+	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>
