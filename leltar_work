@@ -20,6 +20,7 @@
             <File name="js\change_log.js" />
             <File name="js\structure.js" />
             <File name="js\random.js" />
+            <File name="C:\xampp\htdocs\LelTar\js\live_search.js" />
         </Folder>
         <Folder name="lib">
             <File name="lib\error.php" />

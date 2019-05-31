@@ -29,9 +29,9 @@ require(ROOT.'/exec/auth.php')?>
 		<button class="button logout fa-lg" <?=js_spec('logout')?>><i class="fas fa-sign-out-alt"></i></button>
 	</div>
 	<div>
-		<form class="search" action="exec/search.php" <?=js_spec('search')?> method="get">
+		<form class="search" action="exec/search.php" <?=js_spec('search')?> method="get" autocomplete="off" >
 			<span class="float-right">
-				<input type="text" placeholder="Keresés.." id="q" autofocus required />
+				<input type="text" placeholder="Keresés.." id="q" <?=js_spec('live_search')?> autofocus required />
 				<button type="submit" class="button submit fa-lg" value="Keresés" ><i class="fas fa-search"></i></button>
 			</span>
 		</form>

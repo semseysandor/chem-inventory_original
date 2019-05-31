@@ -97,6 +97,11 @@ function js_spec($select, array $p = NULL) {
 
 	switch ($select) {
 
+	// Live search
+	case 'live_search':
+		$js = 'oninput="liveSearch(this.value)"';
+		break;
+
 	// Dropdown
 	case 'drop':
 		$js = 'onclick="dropDown(\''.$p[0].'\')"';

@@ -14,4 +14,5 @@
 	<script src="js/submit.js"></script>
 	<script src="js/dropdown.js"></script>
 	<script src="js/random.js"></script>
+	<script src="js/live_search.js"></script>
 	<body>
