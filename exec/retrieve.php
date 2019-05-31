@@ -280,9 +280,30 @@ try {
 
 		// Get search
 		$search = get_query('search', FALSE, 'string');
-		
-		echo $search;
 
+		$extended = '%'.$search.'%';
+
+		// Retrieves search results
+		$result = sql_live_search($link, $extended);
+
+		if ($result->num_rows > 0) {
+
+			$lenght = 15;
+			if ($lenght < strlen($search)) {
+				$lenght = strlen($search);
+			}
+
+		echo '<div class="unit">';
+			while ($row = $result->fetch_assoc()) {
+				
+				$start = stripos($row['search'], $search) - 5;
+				if ($start < 0) {$start = 0;}
+				
+				echo '<div class="cursor-pointer" onclick="retrieveData(\'exec/search.php?q='.$row['search'].'\', \'index\');">';
+				echo substr($row['search'], $start, $lenght).'</div>';
+			}
+		echo '</div>';
+		}
 	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>

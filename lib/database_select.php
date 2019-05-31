@@ -1778,4 +1778,96 @@ function sql_check_api_id($link, $api_id) {
 		throw new leltar_exception('no_such_record', 1);
 	}
 }
+
+/**
+ * Live search
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$query
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_live_search($link, $query) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_compound.name AS search
+		FROM leltar_compound
+		WHERE name LIKE ?
+	UNION SELECT
+		leltar_compound.name_alt
+		FROM leltar_compound
+		WHERE name_alt LIKE ?
+	UNION SELECT
+		leltar_compound.abbrev
+		FROM leltar_compound
+		WHERE abbrev LIKE ?
+	UNION SELECT
+		leltar_compound.chemical_name
+		FROM leltar_compound
+		WHERE chemical_name LIKE ?
+	UNION SELECT
+		leltar_compound.iupac_name
+		FROM leltar_compound
+		WHERE iupac_name LIKE ?
+	UNION SELECT
+		leltar_compound.chem_formula
+		FROM leltar_compound
+		WHERE chem_formula LIKE ?
+	UNION SELECT
+		leltar_compound.cas
+		FROM leltar_compound
+		WHERE cas LIKE ?
+	UNION SELECT
+		leltar_compound.smiles
+		FROM leltar_compound
+		WHERE smiles LIKE ?
+	UNION SELECT
+		leltar_compound.note
+		FROM leltar_compound
+		WHERE note LIKE ?
+
+	UNION SELECT
+		leltar_batch.name
+		FROM leltar_batch
+		WHERE leltar_batch.name LIKE ?
+			AND leltar_batch.is_active = 1
+	UNION SELECT
+		leltar_batch.lot
+		FROM leltar_batch
+		WHERE leltar_batch.lot LIKE ?
+			AND leltar_batch.is_active = 1
+	UNION SELECT
+		leltar_manfac.name
+		FROM
+			leltar_batch INNER JOIN leltar_manfac USING (manfac_id)
+		WHERE leltar_manfac.name LIKE ?
+			AND leltar_batch.is_active = 1
+	UNION SELECT
+		leltar_batch.note
+		FROM leltar_batch
+		WHERE leltar_batch.note LIKE ?
+			AND leltar_batch.is_active = 1
+
+	ORDER BY search
+	LIMIT 15
+	');
+	$stmt->bind_param('sssssssssssss',$query, $query, $query, $query, $query,
+																		$query, $query, $query, $query, $query,
+																		$query, $query, $query);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
 ?>

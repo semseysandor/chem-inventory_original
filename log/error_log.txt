@@ -1,0 +1,4 @@
+########################
+Fri, 2019. May 31. 16:20
+syntax error, unexpected '$query' (T_VARIABLE), expecting ')'
+CODE: 0 in: C:\xampp\htdocs\LelTar\lib\database_select.php @ line: 1859
