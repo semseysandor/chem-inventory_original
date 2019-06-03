@@ -32,10 +32,11 @@ require(ROOT.'/exec/auth.php')?>
 		<form class="search" action="exec/search.php" <?=js_spec('search')?> method="get" autocomplete="off" >
 			<span class="float-right dropdown">
 				<input type="text" id="q" <?=js_spec('live_search')?> autofocus required placeholder="Keresés.."/>
-				<button type="submit" class="button submit fa-lg" value="Keresés" ><i class="fas fa-search"></i></button>
-				
+				<button type="submit" class="button submit fa-lg" id="search" value="Keresés" >
+					<i class="fas fa-search"></i>
+				</button>
+				<div class="drop-right" id="live_search"></div>
 			</span>
-			<div id="live_search"></div>
 		</form>
 	</div>
 </div>

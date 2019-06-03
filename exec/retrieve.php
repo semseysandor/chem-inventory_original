@@ -280,9 +280,43 @@ try {
 
 		// Get search
 		$search = get_query('search', FALSE, 'string');
-		
-		echo $search;
 
+		// If no search query
+		if ($search == '') {exit;}
+
+		// Extend search (search anywhere)
+		$extended = '%'.$search.'%';
+
+		// Retrieves search results
+		$result = sql_live_search($link, $extended);
+
+		if ($result->num_rows > 0) {
+
+			// Search string lenght
+			$lenght = strlen($search);
+
+			while ($row = $result->fetch_assoc()) {
+
+				// Full result word
+				$word = $row['search'];
+
+				// Start position of search string inside the full word
+				$begin = stripos($word, $search);
+				// Pre-word
+				$start = $begin - 5;
+				if ($start < 0) {$start = 0;}
+
+				// Result item container
+				echo '<div class="live_search" '.js_spec('live_search_item', [$word]).'>';
+				// Pre-search
+				echo substr($word, $start, $begin - $start);
+				// Search term (bold)
+				echo '<strong>'.substr($word, $begin, $lenght).'</strong>';
+				// Post search part (max 25 char long altogether)
+				echo substr($word, $begin + $lenght, 25 - (($begin - $start) + $lenght));
+				echo '</div>';
+			}
+		}
 	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>
