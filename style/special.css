@@ -85,3 +85,18 @@ a.logo {
 	display: none;
 	cursor: default;
 }
+
+/*
+ * Live search
+ ************/
+
+div.live_search {
+	background: rgb(245, 245, 245);
+	border: .06em solid;
+	border-radius: .25em;
+	padding: .5em;
+	margin: 0;
+	cursor: pointer;
+}
+div.live_search:hover {background: yellow;}
+div.focus {background: yellow;}

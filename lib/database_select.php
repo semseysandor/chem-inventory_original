@@ -1796,39 +1796,39 @@ function sql_live_search($link, $query) {
 	SELECT
 		leltar_compound.name AS search
 		FROM leltar_compound
-		WHERE name LIKE ?
+		WHERE leltar_compound.name LIKE ?
 	UNION SELECT
 		leltar_compound.name_alt
 		FROM leltar_compound
-		WHERE name_alt LIKE ?
+		WHERE leltar_compound.name_alt LIKE ?
 	UNION SELECT
 		leltar_compound.abbrev
 		FROM leltar_compound
-		WHERE abbrev LIKE ?
+		WHERE leltar_compound.abbrev LIKE ?
 	UNION SELECT
 		leltar_compound.chemical_name
 		FROM leltar_compound
-		WHERE chemical_name LIKE ?
+		WHERE leltar_compound.chemical_name LIKE ?
 	UNION SELECT
 		leltar_compound.iupac_name
 		FROM leltar_compound
-		WHERE iupac_name LIKE ?
+		WHERE leltar_compound.iupac_name LIKE ?
 	UNION SELECT
 		leltar_compound.chem_formula
 		FROM leltar_compound
-		WHERE chem_formula LIKE ?
+		WHERE leltar_compound.chem_formula LIKE ?
 	UNION SELECT
 		leltar_compound.cas
 		FROM leltar_compound
-		WHERE cas LIKE ?
+		WHERE leltar_compound.cas LIKE ?
 	UNION SELECT
 		leltar_compound.smiles
 		FROM leltar_compound
-		WHERE smiles LIKE ?
+		WHERE leltar_compound.smiles LIKE ?
 	UNION SELECT
 		leltar_compound.note
 		FROM leltar_compound
-		WHERE note LIKE ?
+		WHERE leltar_compound.note LIKE ?
 
 	UNION SELECT
 		leltar_batch.name
@@ -1852,12 +1852,42 @@ function sql_live_search($link, $query) {
 		WHERE leltar_batch.note LIKE ?
 			AND leltar_batch.is_active = 1
 
+	UNION SELECT
+		api_summary.name
+		FROM api_summary
+		WHERE api_summary.name LIKE ?
+	UNION SELECT
+		api_summary.form
+		FROM api_summary
+		WHERE api_summary.form LIKE ?
+	UNION SELECT
+		api_summary.crystallinity
+		FROM api_summary
+		WHERE api_summary.crystallinity LIKE ?
+	UNION SELECT
+		api_summary.particle_size
+		FROM api_summary
+		WHERE api_summary.particle_size LIKE ?
+	UNION SELECT
+		api_summary.pri_indication
+		FROM api_summary
+		WHERE api_summary.pri_indication LIKE ?
+	UNION SELECT
+		api_summary.sec_indication
+		FROM api_summary
+		WHERE api_summary.sec_indication LIKE ?
+	UNION SELECT
+		api_summary.note
+		FROM api_summary
+		WHERE api_summary.note LIKE ?
+
 	ORDER BY search
 	LIMIT 15
 	');
-	$stmt->bind_param('sssssssssssss',$query, $query, $query, $query, $query,
-																		$query, $query, $query, $query, $query,
-																		$query, $query, $query);
+	$stmt->bind_param('ssssssssssssssssssss', $query, $query, $query, $query, $query,
+																						$query, $query, $query, $query, $query,
+																						$query, $query, $query, $query, $query,
+																						$query, $query, $query, $query, $query);
 	$stmt->execute();
 
 	$result = $stmt->get_result();

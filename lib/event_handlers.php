@@ -97,9 +97,16 @@ function js_spec($select, array $p = NULL) {
 
 	switch ($select) {
 
-	// Live search
+	// Live search bar
 	case 'live_search':
 		$js = 'oninput="liveSearch(this.value)"';
+		$js .= ' onkeydown="liveSearchSelect(event)"';
+		break;
+
+	// Live search item
+	case 'live_search_item':
+		$js = 'onclick="q.value=\''.$p[0].'\';';
+		$js .= 'search.click();"';
 		break;
 
 	// Dropdown
