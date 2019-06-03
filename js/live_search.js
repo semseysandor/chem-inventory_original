@@ -35,8 +35,7 @@ function liveSearchSelect(event) {
 	// UP arrow(38)
 	// DOWN arrow(40)
 	// ENTER (13)
-	// INSERT (45)
-	if (code == 38 || code == 40 || code == 13 || code == 45) {
+	if (code == 38 || code == 40 || code == 13) {
 
 		// Currently selected item
 		var currentFocus = -1;
@@ -96,14 +95,6 @@ function liveSearchSelect(event) {
 				x[currentFocus].click();
 			}
 
-		} else if (code == 45) { // INSERT
-
-			// If there is a selected item
-			if (currentFocus > -1) {
-
-				// Autocomplete the input field
-				q.value = x[currentFocus].innerHTML;
-			}
 		}
 	}
 }
