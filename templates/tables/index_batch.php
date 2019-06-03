@@ -107,7 +107,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="padding:0; border:none"></td>
-				<td colspan="9" style="padding:0; border:none">
+				<td colspan="11" style="padding:0; border:none">
 					<div id="pack_<?=$row['id']?>" class="no-show"></div>
 				</td>
 			</tr>

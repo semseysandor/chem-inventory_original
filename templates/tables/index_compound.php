@@ -38,7 +38,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" style="padding:0; border:none"></td>
-			<td colspan="4" style="padding:0; border:none">
+			<td colspan="5" style="padding:0; border:none">
 				<div id="batch_<?=$row['id']?>" class="no-show"></div>
 			</td>
 		</tr>
