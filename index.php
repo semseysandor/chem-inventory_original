@@ -31,6 +31,9 @@ require(ROOT.'/templates/menu.php');?>
 
 	// Close everything on ESCAPE
 	window.addEventListener('keydown', function() {closeOnESC(event)});
+
+	// Reload data on browser navigation
+	window.addEventListener('popstate', function() {retrieveData(event.state, 'index')});
 </script>
 <script src="js/change_log.js"></script>
 <script src="js/smilesDrawer/dist/smiles-drawer.min.js"></script>
