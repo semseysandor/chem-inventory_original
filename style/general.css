@@ -13,6 +13,7 @@ body {
 	font-family: Tahoma, Geneva, sans-serif;
 	max-width: 98%;
 	margin: auto;
+	font-size: 10px;
 }
 
 /*
@@ -47,12 +48,12 @@ body {
 
 /* Floats */
 .float-left {
-	display: inline-block;
-	float: left;
+	display: block;
+	float: none;
 }
 .float-right {
-	display: inline-block;
-	float: right;
+	display: block;
+	float: none;
 }
 
 /* Cursor */
@@ -64,3 +65,5 @@ body {
 
 /* Hover */
 .hover {visibility: hidden;}
+
+	i {display:block;}

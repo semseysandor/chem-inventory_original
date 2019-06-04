@@ -10,7 +10,8 @@
 
 /* General */
 .button {
-	display: inline-block;
+	display: block;
+	width: 100%;
 	margin: .12em;
 	padding: .25em .5em;
 	border: .06em solid;
