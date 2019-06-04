@@ -38,6 +38,11 @@ function retrieveData(url, responseID, callBack) {
 
 		if ((this.readyState == 4) && (this.status == 200)) { // When response is ready from server
 
+			// Put AJAX in history
+			if (responseID == 'index') {
+				history.pushState(url, null, null);
+			}
+
 			responseContainer.innerHTML = this.responseText; // Show response
 
 			// Perform callback
