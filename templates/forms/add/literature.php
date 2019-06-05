@@ -7,8 +7,8 @@
 <form action="exec/upload.php" method="post" <?=js('upload', ['drug&aid='.$api_id, 'drug_'.$api_id])?> enctype="multipart/form-data">
 	<input type="hidden" id="api_id" value="<?=$api_id?>"/>
 	<input type="hidden" id="selector" value="literature"/>
-	<div class="flex-container">
-	<div class="pad-m">
+	<div class="block">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Azonosítás</caption>
 			<tr>
@@ -29,11 +29,11 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Megjegyzés</caption>
 			<tr>
-				<td><textarea id="note"></textarea></td>
+				<td><textarea id="note" cols="30"></textarea></td>
 			</tr>
 		</table>
 		<table class="form">

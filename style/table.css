@@ -17,6 +17,8 @@ table {
  *******************/
 table.search th,td {padding: none;}
 
+table.form {overflow: auto;}
+
 table.form th,td {
 	display: block;
 	padding: .25em;
