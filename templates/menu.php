@@ -1,4 +1,5 @@
-<nav class="block">
+<hr/>
+<nav>
 	<button class="button menu font-l bold" <?=js('menu', ['compound'])?>>
 		<i class="fas fa-flask"></i> Vegyszerleltár
 	</button>

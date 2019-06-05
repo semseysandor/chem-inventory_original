@@ -1,13 +1,17 @@
 <div class="card">
 <form action="exec/add.php" method="post" <?=js('submit', ['compound', 'index'])?>>
 <div class="block">
-	<span class="float-left"><h3>Vegyszer hozzáadása</h3></span>
-	<span class="float-right"><?=button('erase_popup')?></span>
-	<span class="float-right"><?=button('submit')?></span>
+	<div class="col-s-6">
+		<span class="float-left"><h3>Vegyszer hozzáadása</h3></span>
+	</div>
+	<div class="col-s-6">
+		<span class="float-right"><?=button('erase_popup')?></span>
+		<span class="float-right"><?=button('submit')?></span>
+	</div>
 </div>
 	<input type="hidden" id="selector" value="compound"/>
-	<div class="flex-container">
-	<div class="pad-m">
+	<div class="block">
+	<div class="float-left pad-s">
 		<table class="form">
 			<caption>Azonosítás</caption>
 			<tr>
@@ -47,7 +51,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-s">
 		<table class="form">
 			<caption>Információ</caption>
 			<tr>
@@ -69,7 +73,7 @@
 		<table class="form">
 			<caption>Megjegyzés</caption>
 			<tr>
-				<td><textarea id="note"></textarea></td>
+				<td><textarea id="note" cols="30"></textarea></td>
 			</tr>
 		</table>
 	</div>

@@ -15,17 +15,26 @@ table {
 /*
  * Form tables
  *******************/
+table.search th,td {padding: none;}
 
-table.form caption {
-	border-bottom: .06em solid black;
+table.form th,td {
+	display: block;
 	padding: .25em;
 }
 table.form th {
 	font-weight: normal;
-	text-align: right;
+	text-align: left;
+}
+table.form caption {
+	border-bottom: .06em solid black;
 	padding: .25em;
 }
-table.form td {padding: .25em;}
+
+/* RWD */
+@media only screen and (min-width: 300px) {
+	table.form th,td {display: table-cell;}
+	table.form th {text-align: right;}
+}
 
 /*
  * Compound details

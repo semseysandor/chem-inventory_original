@@ -4,25 +4,15 @@
  * Forms
  *********************************************************/
 
-/*
- * Search
- ************/
-form.search input[type=text] {
-	width: 100%;
-	border: .06em solid black;
-	border-radius: .25em;
-	margin: .12em 0;
-	padding: .25em .5em;
+/* Search */
+form.search input {
+	border-color: black;
 	font-size: 1.2em;
-	}
-
-/*
- * Login
- ************/
-form.login input {
-	border: .06em solid black;
-	border-radius: .25em;
+	width: 100%;
 }
+
+/* Login */
+form.login input {border-color: black;}
 
 /*
  * General
@@ -31,6 +21,7 @@ form.login input {
 input[type=text],
 input[type=password],
 input[type=date],
+input[type=search],
 form select,
 form textarea {
 	padding: .25em;
@@ -42,15 +33,14 @@ input:required, select:required {border: 0.06em solid red;}
 form
 input[type=text],
 input[type=password],
-input[type=date] {
-	/* width: 200px; */
+input[type=date],
+textarea {
+	width: 100%;
 }
 
 form textarea {
-	width: 300px;
 	height: 5em;
 	resize: none;
-	margin: auto;
 }
 
 form input[type=checkbox] {padding: .25em;}
