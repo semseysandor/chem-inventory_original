@@ -1,9 +1,10 @@
 <footer>
-	<p>
-		<strong>NanGenex LelTár&trade;</strong> v1.97<br/>
-		Fejlesztette <em>Semsey Sándor</em><br/>
-		&copy;2018 - <?=date('Y')?>
-	</p>
+	<div><strong>NanGenex LelTár&trade;<wbr></strong> v1.98</div>
+	<div>
+		<div class="rwd">Fejlesztette </div>
+		<div class="rwd"><em>Semsey Sándor</em></div>
+	</div>
+	<div>&copy;2018 - <?=date('Y')?></div>
 </footer>
 </body>
 </html>
