@@ -45,7 +45,6 @@
 				<td><input type="file" id="literature" required /></td>
 			</tr>
 		</table>
-		<?=button('submit')?>
 	</div>
 	</div>
 </form>
