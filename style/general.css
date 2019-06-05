@@ -2,23 +2,35 @@
  * Stylesheet for LelTar
  *
  * General
- */
-
-/*
- * Body
  *********************************************************/
 
+/*
+ * General
+ ************/
+
+/* Body */
 body {
 	background: rgb(245, 245, 245);
 	font-family: Tahoma, Geneva, sans-serif;
-	max-width: 98%;
+	max-width: 100%;
 	margin: auto;
 	font-size: 10px;
 }
 
+/* Images */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Heading */
+h1, h2, h3, h4, h5 {
+	margin: .5em 0;
+}
+
 /*
  * Quick styles
- *********************************************************/
+ ************/
 
 /* Padding */
 .pad-no {padding: none;}

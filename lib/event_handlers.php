@@ -106,7 +106,7 @@ function js_spec($select, array $p = NULL) {
 	// Live search item
 	case 'live_search_item':
 		$js = 'onclick="q.value=\''.$p[0].'\';';
-		$js .= 'search.click();"';
+		$js .= 'search_button.click();"';
 		break;
 
 	// Dropdown

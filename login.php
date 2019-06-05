@@ -8,9 +8,11 @@ $config = require('default.php');
 $config['title'] = 'NGX LelTár - Bejelentkezés';
 
 require(ROOT.'/templates/head.php');?>
-<header class="block pad-s">
-	<div class="float-left">
-		<a class="logo" href ="index.php"></a>
+<header class="pad-s">
+	<div>
+		<a href ="index.php">
+			<img src="icons/logo_nangenex.png" alt="NGX" class="rwd" width="252" height="63" />
+		</a>
 	</div>
 </header>
 <main>

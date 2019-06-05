@@ -20,19 +20,22 @@ switch ($_SESSION['USER_RIGHT_LELTAR']) {
 		$level = 'HACK';
 		break;
 }?>
-<header class="block pad-s">
-<div class="float-left col-4 col-s-4">
+<header class="block">
+<div class="float-left col-s-5">
 	<a href ="index.php">
 		<img src="icons/logo_nangenex.png" alt="NGX" class="rwd" width="252" height="63" />
 	</a>
 </div>
-<div class="col-8 col-s-8">
+<div class="col-s-7">
 	<div class="float-right">
-		<div class="block">
-			<div class="rwd float-left"><?=date('Y. M d.')?>
-			<i class="fas fa-user"></i> <?=$_SESSION['USER_NAME']?> (<?=$level?>)
+		<div>
+			<div class="rwd"><i class="far fa-calendar-alt"></i> <?=date('Y. M d.')?></div>
+			<div class="rwd">
+				<i class="fas fa-user"></i>
+				<span> <?=$_SESSION['USER_NAME']?></span>
+				<span> (<?=$level?>)</span>
 			</div>
-			<div class="rwd float-right">
+			<div class="rwd">
 				<button class="button logout fa-lg" <?=js_spec('logout')?>>
 					<i class="fas fa-sign-out-alt"></i>
 				</button>
@@ -40,12 +43,12 @@ switch ($_SESSION['USER_RIGHT_LELTAR']) {
 		</div>
 		<div>
 			<form class="search" action="exec/search.php" <?=js_spec('search')?> method="get" autocomplete="off" >
-				<span class="float-right dropdown">
-					<input type="text" id="q" <?=js_spec('live_search')?> autofocus required placeholder="Keresés.."/>
-					<button type="submit" class="button submit fa-lg" id="search" value="Keresés" >
+				<span class="dropdown float-right">
+					<input type="text" id="q" <?=js_spec('live_search')?> autofocus required placeholder="Keresés.." />
+					<button type="submit" class="button submit fa-lg" id="search_button">
 						<i class="fas fa-search"></i>
 					</button>
-					<div class="drop-right" id="live_search"></div>
+					<div class="drop-right pad-s" id="live_search"></div>
 				</span>
 			</form>
 		</div>
