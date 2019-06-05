@@ -14,43 +14,10 @@
 	display: table;
 }
 
-/* Flex-box */
-.flex-container {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-.flex-container div {
-	align-self: center;
-}
-
 /* For mobile phones */
 [class*="col-"] {
 	width: 100%;
 	float: left;
-}
-
-/* For tablets */
-@media only screen and (min-width: 300px) {
-	.button {
-		display: inline-block;
-		width: auto;
-	}
-	.float-left {
-		display: inline-block;
-		float: left;
-	}
-	.float-right {
-		display: inline-block;
-		float: right;
-	}
-	div.rwd {display: inline;}
-	
-	
-	form.search input[type=text] {
-		width: auto;
-	}
-	
 }
 
 /* For tablets */
@@ -84,6 +51,9 @@
 	.col-10 {width: 83.33%;}
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
-	.flex-container {flex-wrap: nowrap;}
-	
+}
+
+/* Span/div */
+@media only screen and (min-width: 350px) {
+	div.rwd {display: inline;}
 }

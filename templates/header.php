@@ -50,14 +50,10 @@ switch ($_SESSION['USER_RIGHT_LELTAR']) {
 		<div>
 			<form class="search" action="exec/search.php" <?=js_spec('search')?> method="get" autocomplete="off" >
 				<span class="dropdown float-right">
-				<table class="">
-				<tr>
-					<td><input type="search" id="q" <?=js_spec('live_search')?> autofocus required placeholder="Keresés.."/></td>
-					<td><button type="submit" class="button submit fa-lg" id="search_button">
+					<input type="search" id="q" <?=js_spec('live_search')?> autofocus required placeholder="Keresés.."/>
+					<button type="submit" class="button submit fa-lg" id="search_button">
 						<i class="fas fa-search"></i>
-					</button></td>
-					</tr>
-				</table>
+					</button>
 					<div class="drop-right pad-s" id="live_search"></div>
 				</span>
 			</form>

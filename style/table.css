@@ -5,17 +5,11 @@
  *********************************************************/
 
 /* General */
-table {
-	overflow-x: visible;
-	overflow-y: visible;
-	display: block;
-	border-collapse: collapse;
-}
+table {border-collapse: collapse;}
 
 /*
  * Form tables
  *******************/
-table.search th,td {padding: none;}
 
 table.form {overflow: auto;}
 
@@ -33,7 +27,7 @@ table.form caption {
 }
 
 /* RWD */
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 350px) {
 	table.form th,td {display: table-cell;}
 	table.form th {text-align: right;}
 }
@@ -57,6 +51,11 @@ table.comp_det tr:nth-child(even) {background: rgb(235, 235, 235);}
 /*
  * Lists
  *******************/
+
+table.list {
+	overflow-x: visible;
+	overflow-y: visible;
+}
 
 table.list>thead>tr>th {
 	background: wheat;

@@ -12,7 +12,6 @@
 body {
 	background: rgb(245, 245, 245);
 	font-family: Tahoma, Geneva, sans-serif;
-	max-width: 100%;
 	margin: auto;
 	padding: .25em;
 }
@@ -26,9 +25,7 @@ img {
 }
 
 /* Heading */
-h1, h2, h3, h4, h5 {
-	margin: .5em 0;
-}
+h1, h2, h3, h4, h5 {margin: .5em 0;}
 
 /*
  * Quick styles
@@ -69,6 +66,16 @@ h1, h2, h3, h4, h5 {
 	display: block;
 	float: none;
 }
+@media only screen and (min-width: 350px) {
+	.float-left {
+		display: inline-block;
+		float: left;
+	}
+	.float-right {
+		display: inline-block;
+		float: right;
+	}
+}
 
 /* Cursor */
 .cursor-pointer {cursor: pointer;}
@@ -79,5 +86,3 @@ h1, h2, h3, h4, h5 {
 
 /* Hover */
 .hover {visibility: hidden;}
-
-	i {display:block;}

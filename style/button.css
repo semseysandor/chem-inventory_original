@@ -81,3 +81,10 @@ a:visited {
 
 /* Navigation bar */
 nav span {float: left;}
+
+@media only screen and (min-width: 350px) {
+	.button {
+		display: inline-block;
+		width: auto;
+	}
+}

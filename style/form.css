@@ -5,10 +5,15 @@
  *********************************************************/
 
 /* Search */
+form.search {overflow:initial;}
 form.search input {
 	border-color: black;
 	font-size: 1.2em;
 	width: 100%;
+}
+
+@media only screen and (min-width: 350px) {
+	form.search input[type=search] {width: auto;}
 }
 
 /* Login */

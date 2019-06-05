@@ -89,9 +89,12 @@ function js_get_form($select, array $parameters = NULL) {
  */
 function js_spec($select, array $p = NULL) {
 
-	$retr = 'onclick="retrieveData(\'exec/';
-	$exec = 'onclick="executeServer(\'exec/';
-	$prevent = 'onsubmit="event.preventDefault();';
+	$cli = 'onclick=';
+	$sub = 'onsubmit=';
+
+	$retr = '"retrieveData(\'exec/';
+	$exec = '"executeServer(\'exec/';
+	$prevent = '"event.preventDefault();';
 	$submit = 'submitForm(this, \'msg_center\',';
 	$close = 'closeAllOpened();';
 
@@ -105,65 +108,65 @@ function js_spec($select, array $p = NULL) {
 
 	// Live search item
 	case 'live_search_item':
-		$js = 'onclick="q.value=\''.$p[0].'\';';
+		$js = $cli.'"q.value=\''.$p[0].'\';';
 		$js .= 'search_button.click();"';
 		break;
 
 	// Dropdown
 	case 'drop':
-		$js = 'onclick="dropDown(\''.$p[0].'\')"';
+		$js = $cli.'"dropDown(\''.$p[0].'\')"';
 		break;
 
 	// Retrieve data
 	case 'compound':
-		$js = $retr.'retrieve.php?q=compound_det&cid='.$p[0].'\', \'popup\', getSmiles, \'compID\', '.$p[0].')"';
+		$js = $cli.$retr.'retrieve.php?q=compound_det&cid='.$p[0].'\', \'popup\', getSmiles, \'compID\', '.$p[0].')"';
 		break;
 
 	case 'barcode':
-		$js = $retr.'search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\');';
+		$js = $cli.$retr.'search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\');';
 		$js .= $close.'"';
 		break;
 
 	// Get compound info from CAS
 	case 'calc_cas':
-		$js = 'onclick="event.preventDefault();getCompoundInfo()"';
+		$js = $cli.$prevent.'getCompoundInfo()"';
 		break;
 
 	// Execute
 	case 'login':
-		$js = $prevent.$submit.'redirect, \'index.php\')"';
+		$js = $sub.$prevent.$submit.'redirect, \'index.php\')"';
 		break;
 
 	case 'logout':
-		$js = $exec.'logout.php\', \'msg_center\', redirect, \'index.php\')"';
+		$js = $cli.$exec.'logout.php\', \'msg_center\', redirect, \'index.php\')"';
 		break;
 
 	case 'inactivate':
-		$js = 'onclick="inactivate('.$p[0].','.$p[1].',\''.$p[2].'\')"';
+		$js = $cli.'"inactivate('.$p[0].','.$p[1].',\''.$p[2].'\')"';
 		break;
 
 	// Forms
 	case 'search_form':
-		$js = $prevent.$submit.'retrieveData, \'exec/search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\')"';
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\')"';
 		break;
 
 	case 'search':
-		$js = $prevent.'retrieveData(\'exec/search.php?q=\' + this.q.value, \'index\', getSmiles, \'barcode\', this.q.value);';
+		$js = $sub.$prevent.'retrieveData(\'exec/search.php?q=\' + this.q.value, \'index\', getSmiles, \'barcode\', this.q.value);';
 		$js .= $close.'"';
 		break;
 
-	// Random
+	// Erase popup
 	case 'erase_popup':
-		$js = 'onclick="erasePopup()"';
+		$js = $cli.$prevent.';erasePopup()"';
 		break;
 
 	// Change history
 	case 'chng_hist':
-		$js = 'onclick="getChangeHistorySummary('.$p[0].', \''.$p[1].'\')"';
+		$js = $cli.'"getChangeHistorySummary('.$p[0].', \''.$p[1].'\')"';
 		break;
 
 	case 'chng_hist_det':
-		$js = 'onclick="getChangeHistoryDetails('.$p[0].',\''.$p[1].'\','.$p[2].')"';
+		$js = $cli.'"getChangeHistoryDetails('.$p[0].',\''.$p[1].'\','.$p[2].')"';
 		break;
 
 	// Default
