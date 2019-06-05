@@ -18,6 +18,8 @@ form.login input {border-color: black;}
  * General
  ************/
 
+form {overflow:auto;}
+
 input[type=text],
 input[type=password],
 input[type=date],
