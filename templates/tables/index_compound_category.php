@@ -1,10 +1,10 @@
 <nav class="block">
-	<span>
+	<span class="float-left">
 		<button class="button category font-m <?=($cat) ? '':'selected'?>"
 		<?=js('get', ['compound', 'index'])?>>Mind</button>
 	</span>
 <?php while ($row = $categories->fetch_assoc()): ?>
-	<span>
+	<span class="float-left">
 		<button class="button category font-m <?=($cat == $row['id']) ? 'selected':''?>"
 		<?=js('get', ['compound&cat='.$row['id'], 'index'])?>>
 			<?=$row['name']?>

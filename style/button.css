@@ -1,7 +1,7 @@
 /**
  * Stylesheet for LelTar
  *
- * Buttons & Navigation
+ * Buttons
  *********************************************************/
 
 /*
@@ -74,13 +74,11 @@ button.restart:hover {background-color: hsl(210, 100%, 46%);}
 button.delete:hover,
 button.close:hover {background-color: hsl(0, 100%, 40%);}
 
-/*
- * Links
- ************/
+/* Links */
 a:link, a:visited {
 	text-decoration: none;
 	color: black;
 }
 
-/* Navigation bar */
-nav span {float: left;}
+/* Pagination */
+nav.pagination span {float: left;}

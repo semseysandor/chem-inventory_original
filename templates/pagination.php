@@ -1,6 +1,6 @@
 <?php if ($last_page > 1) { # If we need pagination at all
 
-	echo '<nav class="block">';
+	echo '<nav class="block pagination">';
 
 	// Range of num links to show
 	$range = 10;
