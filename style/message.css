@@ -8,6 +8,7 @@
 div.message {
 	padding: .5em 1em;
 	margin: .25em 0;
+	border-left: .5em solid;
 	border-radius: .5em;
 	font-weight: bold;
 }
@@ -16,24 +17,24 @@ div.message {
 div.positive {
 	color: white;
 	background-color: hsl(120, 60%, 50%);
-	border-left: .5em solid hsl(120, 100%, 20%);
+	border-color: hsl(120, 100%, 20%);
 }
 
 /* Neutral */
 div.neutral {
 	background-color: hsl(209, 92%, 95%);
-	border-left: .5em solid hsl(207, 90%, 54%);
+	border-color: hsl(207, 90%, 54%);
 }
 
 /* Negative */
 div.negative {
 	background-color: hsl(0, 100%, 85%);
-	border-left: .5em solid hsl(0, 100%, 50%);
+	border-color: hsl(0, 100%, 50%);
 }
 
 /* Error */
 div.error {
 	color: red;
 	background-color: hsl(60, 100%, 50%);
-	border-left: .5em solid hsl(0, 100%, 50%);
+	border-color: hsl(0, 100%, 50%);
 }

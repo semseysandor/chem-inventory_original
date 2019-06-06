@@ -20,6 +20,13 @@
 	color: white;
 }
 
+@media only screen and (min-width: 350px) {
+	.button {
+		display: inline;
+		width: auto;
+	}
+}
+
 /* Menu & Category & Pagination & Submit */
 button.menu {padding: .5em;}
 button.menu,
@@ -70,21 +77,10 @@ button.close:hover {background-color: hsl(0, 100%, 40%);}
 /*
  * Links
  ************/
-a:link {
-	text-decoration: none;
-	color: black;
-}
-a:visited {
+a:link, a:visited {
 	text-decoration: none;
 	color: black;
 }
 
 /* Navigation bar */
 nav span {float: left;}
-
-@media only screen and (min-width: 350px) {
-	.button {
-		display: inline-block;
-		width: auto;
-	}
-}

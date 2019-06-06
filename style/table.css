@@ -13,7 +13,8 @@ table {border-collapse: collapse;}
 
 table.form {overflow: auto;}
 
-table.form th,td {
+table.form th,
+table.form td {
 	display: block;
 	padding: .25em;
 }
@@ -28,7 +29,8 @@ table.form caption {
 
 /* RWD */
 @media only screen and (min-width: 350px) {
-	table.form th,td {display: table-cell;}
+	table.form th,
+	table.form td {display: table-cell;}
 	table.form th {text-align: right;}
 }
 
@@ -36,25 +38,39 @@ table.form caption {
  * Compound details
  *******************/
 
+table.comp_det {overflow: auto;}
+
 table.comp_det caption {
 	background: wheat;
 	border-radius: .5em .5em 0 0;
 	border-bottom: .15em solid black;
 	padding: .25em .5em;
 }
-table.comp_det th, td {padding: .25em .5em;}
+table.comp_det th,
+table.comp_det td {
+	display: block;
+	padding: .25em .5em;
+	word-break: break-word;
+}
 table.comp_det tr {border-bottom: .08em solid black;}
-table.comp_det th {text-align: right;}
+table.comp_det th {text-align: left;}
 
 table.comp_det tr:nth-child(even) {background: rgb(235, 235, 235);}
+
+/* RWD */
+@media only screen and (min-width: 350px) {
+	table.comp_det th,
+	table.comp_det td {display: table-cell;}
+	table.comp_det th {text-align: right;}
+}
 
 /*
  * Lists
  *******************/
 
-table.list {
-	overflow-x: visible;
-	overflow-y: visible;
+table.list tbody {
+	border-left: .06em solid black;
+	border-right: .06em solid black;
 }
 
 table.list>thead>tr>th {
@@ -79,15 +95,15 @@ table.list>tbody>tr:hover>td>*>* {visibility: visible;}
 /*
  * Change details
  *******************/
-table.change_details {table-layout:fixed;}
+
 table.change_details thead th {
 	background: wheat;
 	border: .06em solid black;
 	border-bottom: .12em solid black;
 }
 table.change_details tbody td {
-	max-width: 200px;
-	word-wrap: break-word;
+	min-width: 200px;
+	word-break: break-word;
 	border: .06em solid black;
 	padding: 0 .25em;
 }

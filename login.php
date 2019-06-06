@@ -18,7 +18,7 @@ require(ROOT.'/templates/head.php');?>
 <hr/>
 <main>
 	<section id="msg_center"></section>
-	<form class="login" action="exec/login.php" method="post" <?=js_spec('login')?>>
+	<form class="login unit" action="exec/login.php" method="post" <?=js_spec('login')?>>
 		<table class="form">
 			<caption>Bejelentkezés</caption>
 			<tr>
