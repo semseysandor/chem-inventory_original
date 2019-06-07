@@ -138,22 +138,22 @@ function button($button, array $p = NULL) {
 	// Active/Archive
 	case 'batch_act':
 		$html = $b.$site.js('get', ['batch&cid='.$p[0], 'batch_'.$p[0]]).'>';
-		$html .= $exch.' Archív'.$_b;
+		$html .= $exch.' Histórikus termékek'.$_b;
 		break;
 
 	case 'batch_hist':
 		$html = $b.$site.js('get', ['batch&cid='.$p[0].'&hist=1', 'batch_'.$p[0]]).'>';
-		$html .= $exch.' Aktív'.$_b;
+		$html .= $exch.' Aktív termékek'.$_b;
 		break;
 
 	case 'pack_act':
 		$html = $b.$site.js('get', ['pack&bid='.$p[0], 'pack_'.$p[0]]).'>';
-		$html .= $exch.' Archív'.$_b;
+		$html .= $exch.' Histórikus kiszerelések'.$_b;
 		break;
 
 	case 'pack_hist':
 		$html = $b.$site.js('get', ['pack&bid='.$p[0].'&hist=1', 'pack_'.$p[0]]).'>';
-		$html .= $exch.' Aktív'.$_b;
+		$html .= $exch.' Aktív kiszerelések'.$_b;
 		break;
 
 	// Add
@@ -164,12 +164,12 @@ function button($button, array $p = NULL) {
 
 	case 'a_batch':
 		$html = $b.$site.js_get_form('a_batch', ['cid='.$p[0]]).'>';
-		$html .= $plus.$_b;
+		$html .= $plus.' Termék'.$_b;
 		break;
 
 	case 'a_pack':
 		$html = $b.$site.js_get_form('a_pack', ['bid='.$p[0]]).'>';
-		$html .= $plus.$_b;
+		$html .= $plus.' Kiszerelés'.$_b;
 		break;
 
 	case 'a_api':

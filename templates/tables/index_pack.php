@@ -1,4 +1,4 @@
-<div class="card">
+<div class="unit">
 	<nav class="block">
 	<?php if ($historic): ?>
 		<span><?=button('pack_act', [$batch_id])?></span>
@@ -61,6 +61,6 @@
 	</table>
 	<?php else: ?>
 	</table>
-	<?=message('0', (($historic) ? 'Nincsenek archivált kiszerelések' : 'Nincsenek kiszerelések'))?>
+	<?=message('0', (($historic) ? 'Nincsenek histórikus kiszerelések' : 'Nincsenek kiszerelések'))?>
 	<?php endif; ?>
 </div>

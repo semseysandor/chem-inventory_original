@@ -17,7 +17,7 @@
 			</tr>
 			<tr>
 				<th>Eredeti kiszerelés</th>
-				<td><input class="fa-2x" type="checkbox" id="is_orig" value="1"/></td>
+				<td><input type="checkbox" id="is_orig" value="1"/></td>
 			</tr>
 			<tr>
 				<th>Tömeg [g]<br/>(bruttó/tára)</th>

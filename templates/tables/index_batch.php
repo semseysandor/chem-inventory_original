@@ -1,4 +1,4 @@
-<div class="card">
+<div class="unit">
 	<nav class="block">
 	<?php if (isset($comp_id) and $historic): ?>
 		<span><?=button('batch_act', [$comp_id])?></span>
@@ -116,6 +116,6 @@
 	</table>
 	<?php else: ?>
 	</table>
-	<?=message('0', (($historic) ? 'Nincsenek archivált termékek' : 'Nincsenek termékek'))?>
+	<?=message('0', (($historic) ? 'Nincsenek histórikus termékek' : 'Nincsenek termékek'))?>
 	<?php endif; ?>
 </div>
