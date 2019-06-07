@@ -1,7 +1,12 @@
 <div class="card">
 <form action="exec/add.php" method="post" <?=js('submit', ['pack&bid='.$batch_id, 'pack_'.$batch_id])?>>
 <div class="block">
-	<span class="float-left"><h3>Kiszerelés hozzáadása</h3></span>
+	<span class="float-left">
+		<div>
+			<h3>Kiszerelés hozzáadása</h3>
+			<h4><?=$comp?> - <?=$manfac?> - <?=$batch?> (LOT#<?=$lot?>)</h4>
+		</div>
+	</span>
 	<span class="float-right"><?=button('erase_popup')?></span>
 	<span class="float-right"><?=button('submit')?></span>
 </div>

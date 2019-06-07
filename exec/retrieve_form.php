@@ -39,7 +39,15 @@ try {
 
 		$comp_id = get_query('cid');
 
-		include(ROOT.'/templates/forms/add/batch.php');
+		$result = sql_get_comp_info($link, $comp_id);
+
+		if ($result->num_rows == 1) { # Compound found
+
+			$comp_name = $result->fetch_object()->name;
+
+			include(ROOT.'/templates/forms/add/batch.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
 	}
 
 	// Add pack
@@ -47,7 +55,21 @@ try {
 
 		$batch_id = get_query('bid');
 
-		include(ROOT.'/templates/forms/add/pack.php');
+		$result = sql_get_batch_info($link, $batch_id);
+
+		if ($result->num_rows == 1) { # Batch found
+
+			$data = $result->fetch_assoc();
+
+			// Batch info
+			$comp = $data['comp_name'];
+			$manfac = $data['manfac_name'];
+			$batch = $data['batch_name'];
+			$lot = $data['lot'];
+
+			include(ROOT.'/templates/forms/add/pack.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
 	}
 
 	// Add API

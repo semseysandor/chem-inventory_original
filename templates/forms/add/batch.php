@@ -1,7 +1,12 @@
 <div class="card">
 <form action="exec/add.php" method="post" <?=js('submit', ['batch&cid='.$comp_id, 'batch_'.$comp_id])?>>
 <div class="block">
-	<span class="float-left"><h3>Termék hozzáadása</h3></span>
+	<span class="float-left">
+		<div>
+			<h3>Termék hozzáadása</h3>
+			<h4><?=$comp_name?></h4>
+		</div>
+	</span>
 	<span class="float-right"><?=button('erase_popup')?></span>
 	<span class="float-right"><?=button('submit')?></span>
 </div>

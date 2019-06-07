@@ -193,6 +193,40 @@ function sql_get_pk_attribute($link) {
 // Parameterized SELECT queries
 
 /**
+ * Retrieve compound info
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$comp_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_comp_info($link, $comp_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_compound.name
+	FROM leltar_compound
+	WHERE leltar_compound.compound_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $comp_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
  * Retrieve batch info
  *
  * @param		mysqli_link	$link
@@ -224,7 +258,7 @@ function sql_get_batch_info($link, $batch_id) {
 	$result = $stmt->get_result();
 
 	$stmt->close();
-	
+
 	if (!$result) {
 		throw new leltar_exception('sql_fail', 1);
 	}
@@ -280,74 +314,6 @@ function sql_get_compound_data($link, $comp_id) {
 	}
 
 	return $result;
-}
-
-/**
- * Retrieve SMILES from compound ID
- *
- * @param		mysqli_link	$link
- * @param		int					$comp_id
- *
- * @throws	leltar_exception if SQL query failed
- *
- * @return	mysqli_result
- */
-function sql_get_smiles_compound($link, $comp_id) {
-
-	$stmt = $link->init();
-	$stmt = $link->prepare('
-	SELECT
-		leltar_compound.smiles AS smiles
-	FROM leltar_compound
-	WHERE leltar_compound.compound_id = ?
-	LIMIT 1
-	');
-	$stmt->bind_param('i', $comp_id);
-	$stmt->execute();
-
-	$result = $stmt->get_result();
-
-	$stmt->close();
-
-	if (!$result) {
-		throw new leltar_exception('sql_fail', 1);
-	}
-
-	return $result->fetch_object()->smiles;
-}
-
-/**
- * Retrieve SMILES from barcode
- *
- * @param		mysqli_link		$link
- * @param		string				$barcode
- *
- * @throws	leltar_exception if SQL query failed
- *
- * @return	mysqli_result
- */
-function sql_get_smiles_barcode($link, $barcode) {
-
-	$stmt = $link->init();
-	$stmt = $link->prepare('
-	SELECT
-		leltar_all_info.smiles AS smiles
-	FROM leltar_all_info
-	WHERE leltar_all_info.barcode = ?
-	LIMIT 1
-	');
-	$stmt->bind_param('s', $barcode);
-	$stmt->execute();
-
-	$result = $stmt->get_result();
-
-	$stmt->close();
-
-	if (!$result) {
-		throw new leltar_exception('sql_fail', 1);
-	}
-
-	return $result->fetch_object()->smiles;
 }
 
 /**
@@ -443,6 +409,75 @@ function sql_get_pack_data($link, $pack_id) {
 
 	return $result;
 }
+
+/**
+ * Retrieve SMILES from compound ID
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$comp_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_smiles_compound($link, $comp_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_compound.smiles AS smiles
+	FROM leltar_compound
+	WHERE leltar_compound.compound_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $comp_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result->fetch_object()->smiles;
+}
+
+/**
+ * Retrieve SMILES from barcode
+ *
+ * @param		mysqli_link		$link
+ * @param		string				$barcode
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_smiles_barcode($link, $barcode) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_all_info.smiles AS smiles
+	FROM leltar_all_info
+	WHERE leltar_all_info.barcode = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $barcode);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result->fetch_object()->smiles;
+}
+
 
 /**
  * Retrieve compounds (all)
@@ -648,6 +683,41 @@ function sql_get_pack($link, $batch_id, $is_active) {
 		leltar_location_list.sub_name
 	');
 	$stmt->bind_param('ii', $batch_id, $is_active);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve all info on barcode
+ *
+ * @param		mysqli_link	$link
+ * @param		string			 $barcode
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_barcode_data($link, $barcode) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT *
+	FROM leltar_all_info
+	WHERE
+		leltar_all_info.barcode = ?
+		AND leltar_all_info.pack_is_active = 1
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $barcode);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
@@ -945,41 +1015,6 @@ function sql_get_user_info($link, $user_name) {
 	LIMIT 1
 	');
 	$stmt->bind_param('s', $user_name);
-	$stmt->execute();
-
-	$result = $stmt->get_result();
-
-	$stmt->close();
-
-	if (!$result) {
-		throw new leltar_exception('sql_fail', 1);
-	}
-
-	return $result;
-}
-
-/**
- * Retrieve all info on barcode
- *
- * @param		mysqli_link	$link
- * @param		string			 $barcode
- *
- * @throws	leltar_exception if SQL query failed
- *
- * @return	mysqli_result
- */
-function sql_get_barcode_data($link, $barcode) {
-
-	$stmt = $link->init();
-	$stmt = $link->prepare('
-	SELECT *
-	FROM leltar_all_info
-	WHERE
-		leltar_all_info.barcode = ?
-		AND leltar_all_info.pack_is_active = 1
-	LIMIT 1
-	');
-	$stmt->bind_param('s', $barcode);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
