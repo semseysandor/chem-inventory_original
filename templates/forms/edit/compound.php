@@ -1,11 +1,15 @@
 <div class="card">
 <form action="exec/update.php" method="post" id="e_comp" <?=$javascript?>>
 <div class="block">
-	<span class="float-left"><h3>Vegyszer módosítása</h3></span>
+	<span class="float-left">
+		<div>
+			<h3>Vegyszer módosítása</h3>
+			<h4><?=$name?></h4>
+		</div>
+	</span>
 	<span class="float-right"><?=button('erase_popup')?></span>
 	<span class="float-right"><?=button('submit')?></span>
 </div>
-<h4><?=$name?></h4>
 	<input type="hidden" id="comp_id" value="<?=$comp_id?>"/>
 	<input type="hidden" id="selector" value="compound"/>
 	<div class="block">

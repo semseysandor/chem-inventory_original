@@ -3,16 +3,19 @@
  * DataBase init
  *********************************************************/
 
-$db_host =		 'localhost';
-$db_username = 'leltar_USER';
-$db_pass =		 'leltar';
-$db_name =		 'inventory';
+// DB login info
+$db = [
+'host' => 'localhost',
+'user' => 'leltar_USER',
+'pass' => 'leltar',
+'name' => 'inventory'
+];
 
 // Connect to SQL server
 try {
 
 	// Open a link to the database
-	$link = new mysqli($db_host, $db_username, $db_pass, $db_name);
+	$link = new mysqli($db['host'], $db['user'], $db['pass'], $db['name']);
 
 	// If error in connection
 	if ($link->connect_error) {

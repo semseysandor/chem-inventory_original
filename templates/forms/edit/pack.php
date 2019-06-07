@@ -1,11 +1,15 @@
 <div class="card">
 <form action="exec/update.php" method="post" <?=$javascript?>>
 <div class="block">
-	<span class="float-left"><h3>Kiszerelés módosítása</h3></span>
+	<span class="float-left">
+		<div>
+			<h3>Kiszerelés módosítása</h3>
+			<h4><?=$comp_name?> - <?=$manfac_name?> - <?=$batch_name?> (LOT#<?=$lot?>) [<?=$size?>]</h4>
+		</div>
+	</span>
 	<span class="float-right"><?=button('erase_popup')?></span>
 	<span class="float-right"><?=button('submit')?></span>
 </div>
-<h4><?=$comp_name?> - <?=$manfac_name?> - <?=$batch_name?> (<?=$lot?>) [<?=$size?>]</h4>
 	<input type="hidden" id="pack_id" value="<?=$pack_id?>"/>
 	<input type="hidden" id="selector" value="pack"/>
 	<div class="block">
