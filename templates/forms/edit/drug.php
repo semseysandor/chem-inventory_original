@@ -8,8 +8,8 @@
 <h4><?=$name?></h4>
 	<input type="hidden" id="drug_id" value="<?=$drug_id?>"/>
 	<input type="hidden" id="selector" value="drug"/>
-	<div class="flex-container">
-	<div class="pad-m">
+	<div class="block">
+	<div class="float-left pad-m">
 		<table class="form">
 		<caption>Azonosítás</caption>
 			<tr>
@@ -37,7 +37,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-m">
 		<table class="form">
 		<caption>Dozírozás</caption>
 			<tr>
@@ -64,10 +64,12 @@
 					</select></td>
 			</tr>
 		</table>
+	</div>
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Megjegyzés</caption>
 			<tr>
-				<td><textarea id="note"><?=$note?></textarea></td>
+				<td><textarea id="note" cols="30"><?=$note?></textarea></td>
 			</tr>
 		</table>
 	</div>

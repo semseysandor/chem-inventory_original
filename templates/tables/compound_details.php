@@ -71,8 +71,8 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="float-left">
-		<table class="comp_det pad-m">
+	<div class="float-left pad-m">
+		<table class="comp_det">
 			<caption>Fizikai-kémiai adatok</caption>
 			<tbody>
 				<tr>
@@ -85,7 +85,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<table class="comp_det pad-m">
+		<table class="comp_det" style="margin-top:1em">
 			<caption>Információ</caption>
 			<tbody>
 				<tr>

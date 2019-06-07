@@ -1,5 +1,4 @@
-<div class="block">
-<div class="card float-left">
+<div class="pad-s of-auto">
 	<table class="list">
 	<thead>
 		<tr>
@@ -49,5 +48,4 @@
 	</table>
 	<?=message('0', 'Nincs ilyen vegyszer')?>
 <?php endif; ?>
-</div>
 </div>

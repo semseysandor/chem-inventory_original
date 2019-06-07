@@ -7,8 +7,8 @@
 </div>
 <input type="hidden" id="batch_id" value="<?=$batch_id?>"/>
 <input type="hidden" id="selector" value="pack"/>
-<div class="flex-container">
-	<div class="pad-m">
+<div class="block">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Azonosítás</caption>
 			<tr>
@@ -17,7 +17,7 @@
 			</tr>
 			<tr>
 				<th>Eredeti kiszerelés</th>
-				<td><input class="fa-2x" type="checkbox" id="is_orig" value="1"/></td>
+				<td><input type="checkbox" id="is_orig" value="1"/></td>
 			</tr>
 			<tr>
 				<th>Tömeg [g]<br/>(bruttó/tára)</th>
@@ -56,11 +56,11 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Megjegyzés</caption>
 			<tr>
-				<td><textarea id="note"></textarea></td>
+				<td><textarea id="note" cols="30"></textarea></td>
 			</tr>
 		</table>
 	</div>

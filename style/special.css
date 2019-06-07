@@ -29,24 +29,13 @@
  * Random
  ************/
 
-/* Heading */
-h1, h2, h3, h4, h5 {
-	margin: .5em 0;
-}
-
-/* Logo */
-a.logo {
-	display: block;
-	width: 252px;
-	height: 65px;
-	background-image: url("../icons/logo_nangenex.png");
-}
-
 /* Canvas for structure */
 #structure {
 	background: white;
 	border: .06em solid black;
 	margin: .25em .5em;
+	max-width: 100%;
+	height: auto;
 }
 
 /*

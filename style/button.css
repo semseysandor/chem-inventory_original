@@ -1,7 +1,7 @@
 /**
  * Stylesheet for LelTar
  *
- * Buttons & Navigation
+ * Buttons
  *********************************************************/
 
 /*
@@ -10,13 +10,21 @@
 
 /* General */
 .button {
-	display: inline-block;
+	display: block;
+	width: 100%;
 	margin: .12em;
 	padding: .25em .5em;
 	border: .06em solid;
 	border-radius: .25em;
 	cursor: pointer;
 	color: white;
+}
+
+@media only screen and (min-width: 350px) {
+	.button {
+		display: inline;
+		width: auto;
+	}
 }
 
 /* Menu & Category & Pagination & Submit */
@@ -66,17 +74,11 @@ button.restart:hover {background-color: hsl(210, 100%, 46%);}
 button.delete:hover,
 button.close:hover {background-color: hsl(0, 100%, 40%);}
 
-/*
- * Links
- ************/
-a:link {
-	text-decoration: none;
-	color: black;
-}
-a:visited {
+/* Links */
+a:link, a:visited {
 	text-decoration: none;
 	color: black;
 }
 
-/* Navigation bar */
-nav span {float: left;}
+/* Pagination */
+nav.pagination span {float: left;}

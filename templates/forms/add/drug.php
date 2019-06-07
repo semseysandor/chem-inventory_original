@@ -7,8 +7,8 @@
 </div>
 	<input type="hidden" id="api_id" value="<?=$api_id?>"/>
 	<input type="hidden" id="selector" value="drug"/>
-	<div class="flex-container">
-	<div class="pad-m">
+	<div class="block">
+	<div class="float-left pad-m">
 		<table class="form">
 		<caption>Azonosítás</caption>
 			<tr>
@@ -36,7 +36,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-m">
 		<table class="form">
 		<caption>Dozírozás</caption>
 			<tr>
@@ -62,7 +62,7 @@
 		<table class="form">
 			<caption>Megjegyzés</caption>
 			<tr>
-				<td><textarea id="note"></textarea></td>
+				<td><textarea id="note" cols="30"></textarea></td>
 			</tr>
 		</table>
 </form>

@@ -8,8 +8,8 @@
 <h4><?=$comp_name?> - <?=$manfac_name?> - <?=$name?> (<?=$lot?>)</h4>
 	<input type="hidden" id="batch_id" value="<?=$batch_id?>"/>
 	<input type="hidden" id="selector" value="batch"/>
-	<div class="flex-container">
-	<div class="pad-m">
+	<div class="block">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Azonosítás</caption>
 			<tr>
@@ -48,7 +48,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Dátumok</caption>
 			<tr>
@@ -65,11 +65,11 @@
 			</tr>
 		</table>
 	</div>
-	<div class="pad-m">
+	<div class="float-left pad-m">
 		<table class="form">
 			<caption>Megjegyzés</caption>
 			<tr>
-				<td colspan="3"><textarea id="note"><?=$note?></textarea></td>
+				<td colspan="3"><textarea id="note" cols="30"><?=$note?></textarea></td>
 			</tr>
 		</table>
 	</div>
