@@ -15,7 +15,7 @@ require(ROOT.'/templates/menu.php');?>
 <main>
 	<section id="msg_center"></section>
 	<section id="popup"></section>
-	<section id="index" class="card"></section>
+	<section id="index" class="unit"></section>
 </main>
 <script>
 	// Event listeners
