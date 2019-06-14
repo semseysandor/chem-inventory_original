@@ -52,7 +52,9 @@
 				}?>
 				<td><?=$location?></td>
 				<td><?=$row['note']?></td>
-				<td class="cursor-pointer" <?=js_spec('barcode', [$row['barcode']])?>><?=$row['barcode']?></td>
+				<td <?=js_spec('barcode', [$row['barcode']])?>>
+					<button class="barcode"><?=$row['barcode']?></button>
+				</td>
 			</tr>
 			<tr>
 			</tr>
