@@ -1,13 +1,13 @@
 # README
 
-LelTar
+## ChemInventory
 
 This is a chemical inventory suitable for a medium-sized company.
 A very similar system is actually used in the industry.
 
 Like any inventory, this system is designed to answer two questions:
-1) WHAT we have
-2) WHERE is it.
+1. WHAT we have
+2. WHERE is it.
 
 Chemicals are structured in categories/subcategories. There are compounds,
 a compound can have batches and a batch can have many packs.
@@ -28,26 +28,26 @@ Adding and editing batches and packs is only allowed for admins.
 Users can add/edit compounds and upload documents, whereas guests only can view
 and search the database.
 
-FEATURES
+## FEATURES
 
-- LDAP authentication
-- Three user access levels (guest/user/admin)
-- Add/edit compounds, batches and packs
-- Inactivate packs when getting empty
-- Changelog for audit trails
-- Search with autocomplete
-- Generate barcodes
-- Drawing chemical structures
+* LDAP authentication
+* Three user access levels (guest/user/admin)
+* Add/edit compounds, batches and packs
+* Inactivate packs when getting empty
+* Changelog for audit trails
+* Search with autocomplete
+* Generate barcodes
+* Drawing chemical structures
 
-INSTALLATION
+## INSTALLATION
 
-1) Install a web server (like Apache) with support for PHP version 5.5.9
-2) Install a LDAP server
-2) Copy all the source files to host on your server
-3) Setup a MySQL server and import DB_structure.sql files
-4) Edit config.php with your credentials
+1. Install a web server (like Apache) with support for PHP version 5.5.9
+2. Install a LDAP server
+3. Copy all the source files to host on your server
+4. Setup a MySQL server and import DB_structure.sql files
+5. Edit config.php with your credentials
 
-LICENSE
+## LICENSE
 
 GNU General Public License v3.0
 
