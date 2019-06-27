@@ -6,14 +6,14 @@ This is a chemical inventory suitable for a medium-sized company.
 A very similar system is actually used in the industry.
 
 Like any inventory, this system is designed to answer two questions:
-1. WHAT we have
-2. WHERE is it.
+1. **WHAT** we have
+2. **WHERE** it is
 
-Chemicals are structured in categories/subcategories. There are compounds,
-a compound can have batches and a batch can have many packs.
-Locationwise you can design laboratories (rooms), inside laboratories different
-storages (like cabinets, cupboards, fridges, etc.) and inside storages some sub-
-storages (e.g. shelves of a cupboard). Anyway, you can use any logic, nevertheless
+Chemicals are structured in categories/subcategories. There are *compounds*,
+a compound can have *batch*es and a batch can have many *pack*s.
+Locationwise you can design *laboratories* (rooms), inside laboratories different
+*storages* (like cabinets, cupboards, fridges, etc.) and inside storages some *sub-
+storages* (e.g. shelves of a cupboard). Anyway, you can use any logic, nevertheless
 there is a 3-tier location system.
 
 Compound, batch and pack management is through the web interface.
@@ -49,6 +49,6 @@ and search the database.
 
 ## LICENSE
 
-GNU General Public License v3.0
+**GNU General Public License v3.0**
 
 This is a free software ;)
