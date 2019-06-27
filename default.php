@@ -7,6 +7,7 @@
 define('ROOT', __DIR__);
 
 // Standard includes
+require(ROOT.'/config.php');
 require(ROOT.'/lib/function_lib.php');
 require(ROOT.'/lib/error.php');
 require(ROOT.'/lib/database_init.php');

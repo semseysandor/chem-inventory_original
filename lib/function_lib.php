@@ -171,9 +171,9 @@ function authenticate($user, $password) {
 	}
 
 	// LDAP server
-	$ldap_host =		'192.168.10.1';
-	$ldap_dn =			'CN=Users,DC=nangenex,DC=local';
-	$ldap_usr_dom = '@nangenex.local';
+	$ldap_host = 		LDAP_HOST;
+	$ldap_dn =			LDAP_DN;
+	$ldap_usr_dom = LDAP_USR_DOM;
 
 	// Connect to LDAP
 	$ldap = ldap_connect($ldap_host);
