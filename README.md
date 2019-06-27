@@ -53,7 +53,7 @@ and search the database.
 
 This is a free software ;)
 
-## Contact
+## CONTANCT
 
 If you need more information feel free to contact me:
 semseysandor@gmail.com
