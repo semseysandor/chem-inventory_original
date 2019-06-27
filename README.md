@@ -52,3 +52,8 @@ and search the database.
 **GNU General Public License v3.0**
 
 This is a free software ;)
+
+## Contact
+
+If you need more information feel free to contact me:
+semseysandor@gmail.com
