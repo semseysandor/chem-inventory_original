@@ -9,7 +9,7 @@ Like any inventory, this system is designed to answer two questions:
 1. **WHAT** we have
 2. **WHERE** it is
 
-Chemicals are structured in categories/subcategories. There are *compounds*,
+Chemicals are structured in categories/subcategories. There are *compound*s,
 a compound can have *batch*es and a batch can have many *pack*s.
 Locationwise you can design *laboratories* (rooms), inside laboratories different
 *storages* (like cabinets, cupboards, fridges, etc.) and inside storages some *sub-
