@@ -8,13 +8,5 @@
 			<i class="fas fa-search"></i>
 		</button>
 	</form>
-<section id="incoming">
-	<?php // Compound list ?>
-	<section id="compound_list"></section>
-	<h3 id="h3_selected_compound"></h3>
-	<?php // Batch list ?>
-	<section id="section_batch_list"></section>
-	<h3 id="h3_selected_batch"></h3>
-	<section id="section_pack_list"></section>
-</section>
+	<section id="incoming"></section>
 </div>

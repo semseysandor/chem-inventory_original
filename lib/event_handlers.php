@@ -151,11 +151,15 @@ function js_spec($select, array $p = NULL) {
 		break;
 
 	case 'inc_comp':
-		$js = $sub.$prevent.'retrieveData(\'exec/incoming.php?q=compound&comp=\' + this.q.value, \'compound_list\')"';
+		$js = $sub.$prevent.'retrieveData(\'exec/incoming.php?q=compound&comp=\' + this.q.value, \'incoming\')"';
 		break;
 
 	case 'inc_form_comp':
-		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=compound&comp=\' + this.name.value, \'compound_list\')"';
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=compound&comp=\' + this.name.value, \'incoming\')"';
+		break;
+
+	case 'inc_select_comp':
+		$js = $cli.'"selectCompound('.$p[0].', \''.$p[1].'\')"';
 		break;
 
 	// Forms

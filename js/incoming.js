@@ -11,15 +11,13 @@
 function selectCompound(ID, name) {
 
 	// Retrieves batch list
-	retrieveData('exec/retrieve.php?q=list_batch_incoming&cid=' + ID, 'section_batch_list');
+	retrieveData('exec/incoming.php?q=batch&cid=' + ID, 'batch_list');
 
 	// Erase compound list
-	document.getElementById('section_compound_list').innerHTML = '';
+	document.getElementById('compound_list').innerHTML = '';
 
 	// Show selected compound
 	document.getElementById('h3_selected_compound').innerHTML = ('Vegyszer: ' + name);
-
-	eraseMessageCenter();
 }
 
 /**

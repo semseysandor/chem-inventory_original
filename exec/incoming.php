@@ -34,5 +34,13 @@ try {
 		require(ROOT.'/templates/incoming/compound.php');
 
 	}
+
+	// Batch list
+	if ($query == 'batch') {
+		
+		$comp_id = get_query('cid');
+		
+		echo $comp_id;
+	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>
