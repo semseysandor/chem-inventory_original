@@ -44,49 +44,62 @@ function button($button, array $p = NULL) {
 
 	switch ($button) {
 
-	// Special
+	// Change history
 	case 'chng_hist':
 		$html = $s.$hover.js_spec('chng_hist', $p).'>';
 		$html .= $history.$_s;
 		break;
 
+	// Inactivate
 	case 'inactivate':
 		$html = $b.'class="button delete font-l" '.js_spec('inactivate', $p).'>';
 		$html .= $trash.' Törlés'.$_b;
 		break;
 
+	// Submit
 	case 'submit':
 		$html = $b.'type="submit" class="button submit font-m bold">';
 		$html .= $check.' Mentés'.$_b;
 		break;
 
+	// File
 	case 'file':
 		$html = '<a target="_blank" rel="noopener noreferrer" href="'.$p[0].'">';
 		$html .= $file.'</a>';
 		break;
 
+	// Compound details
 	case 'compound':
 		$html = $s.$hover.js_spec('compound', $p).'>';
 		$html .= $info.$_s;
 		break;
 
+	// Erase popup
 	case 'erase_popup':
 		$html = $b.'class="button close font-m" '.js_spec('erase_popup').'>';
 		$html .= $window.' Bezárás'.$_b;
 		break;
 
+	// More
 	case 'more':
 		$html = $s.js_spec('drop', $p).'>'.$more.$_s;
 		break;
 
+	// Calculate CAS
 	case 'calc_cas':
 		$html = $b.'class="button selected" '.js_spec('calc_cas').'>';
 		$html .= $redo.' CAS'.$_b;
 		break;
 
+	// Incoming
+	case 'incoming':
+		$html = $b.$site_m.js_spec('inc_start').'>';
+		$html .= $inbox.' Bevételezés'.$_b;
+		break;
+
 	// Edit
 	case 'e_comp':
-		$html = $s.$hover.js_get_form('e_comp', ['cid='.$p[0], 'mode=index']).'>';
+		$html = $s.$hover.js_get_form('e_comp', ['cid='.$p[0], 'mode='.$p[1]]).'>';
 		$html .= $pencil_black.$_s;
 		break;
 
@@ -158,7 +171,7 @@ function button($button, array $p = NULL) {
 
 	// Add
 	case 'a_comp':
-		$html = $b.$site_m.js_get_form('a_comp').'>';
+		$html = $b.$site_m.js_get_form('a_comp', ['mode='.$p[0]]).'>';
 		$html .= $plus.' Vegyszer'.$_b;
 		break;
 

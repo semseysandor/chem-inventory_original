@@ -145,6 +145,19 @@ function js_spec($select, array $p = NULL) {
 		$js = $cli.'"inactivate('.$p[0].','.$p[1].',\''.$p[2].'\')"';
 		break;
 
+	// Incoming
+	case 'inc_start':
+		$js = $cli.$retr.'incoming.php?q=start\', \'index\')"';
+		break;
+
+	case 'inc_comp':
+		$js = $sub.$prevent.'retrieveData(\'exec/incoming.php?q=compound&comp=\' + this.q.value, \'compound_list\')"';
+		break;
+
+	case 'inc_form_comp':
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=compound&comp=\' + this.name.value, \'compound_list\')"';
+		break;
+
 	// Forms
 	case 'search_form':
 		$js = $sub.$prevent.$submit.'retrieveData, \'exec/search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\')"';

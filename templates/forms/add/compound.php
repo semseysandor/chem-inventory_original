@@ -1,5 +1,5 @@
 <div class="card">
-<form action="exec/add.php" method="post" <?=js('submit', ['compound', 'index'])?>>
+<form action="exec/add.php" method="post" <?=$javascript?>>
 <div class="block">
 	<span class="float-left"><h3>Vegyszer hozzáadása</h3></span>
 	<span class="float-right"><?=button('erase_popup')?></span>

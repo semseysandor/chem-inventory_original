@@ -17,8 +17,8 @@
 		<tr class="cursor-pointer">
 			<td><?=button('compound', [$row['id']])?></td>
 			<td><?=change_log($row['id'], 'leltar_compound')?></td>
-			<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 0 ): ?>
-			<td><?=button('e_comp', [$row['id']])?></td>
+			<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 1 ): ?>
+			<td><?=button('e_comp', [$row['id'], 'index'])?></td>
 			<?php else: ?>
 			<td></td>
 			<?php endif; ?>

@@ -38,4 +38,5 @@ require(ROOT.'/templates/menu.php');?>
 <script src="js/change_log.js"></script>
 <script src="js/smilesDrawer/dist/smiles-drawer.min.js"></script>
 <script src="js/structure.js"></script>
+<script src="js/incoming.js"></script>
 <?php require(ROOT.'/templates/footer.php')?>

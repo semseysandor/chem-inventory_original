@@ -12,6 +12,9 @@
 	</span>
 <?php endwhile; ?>
 <?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 1): ?>
-	<span class="float-right"><?=button('a_comp')?></span>
+	<span class="float-right"><?=button('a_comp', ['index'])?></span>
+<?php endif; ?>
+<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2): ?>
+	<span class="float-right"><?=button('incoming')?></span>
 <?php endif; ?>
 </nav>

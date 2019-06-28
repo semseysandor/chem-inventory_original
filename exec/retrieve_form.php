@@ -31,6 +31,18 @@ try {
 
 	// Add compound
 	if ($query == 'a_comp') {
+
+		// Get mode
+		$mode = get_query('mode', TRUE, 'string');
+
+		if ($mode == 'index') {
+			$javascript = js('submit', ['compound', 'index']);
+		} elseif ($mode == 'incoming') {
+			$javascript = js_spec('inc_form_comp');
+		} else {
+			exit;
+		}
+
 		include(ROOT.'/templates/forms/add/compound.php');
 	}
 
@@ -135,6 +147,10 @@ try {
 				$javascript = js('submit', ['compound', 'index']);
 			} elseif ($mode == 'search') {
 				$javascript = js_spec('search_form', [$barcode]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_comp');
+			} else {
+				exit;
 			}
 
 			// Edit compound form
