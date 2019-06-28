@@ -1,6 +1,6 @@
 <nav class="block">
 <?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2): ?>
-	<span class="float-left font-m"><?=button('a_pack', [$batch_id])?></span>
+	<span class="float-left font-m"><?=button('a_pack', [$batch_id, 'incoming'])?></span>
 <?php endif; ?>
 </nav>
 <?php if ($result->num_rows > 0): ?>

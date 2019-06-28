@@ -75,13 +75,23 @@ try {
 	// Add pack
 	if ($query == 'a_pack') {
 
+		// Get
 		$batch_id = get_query('bid');
+		$mode = get_query('mode', TRUE, 'string');
 
 		$result = sql_get_batch_info($link, $batch_id);
 
 		if ($result->num_rows == 1) { # Batch found
 
 			$data = $result->fetch_assoc();
+
+			if ($mode == 'index') {
+				$javascript = js('submit', ['pack&bid='.$batch_id, 'pack_'.$batch_id]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_pack', [$batch_id]);
+			} else {
+				exit;
+			}
 
 			// Batch info
 			$comp = $data['comp_name'];

@@ -181,7 +181,7 @@ function button($button, array $p = NULL) {
 		break;
 
 	case 'a_pack':
-		$html = $b.$site.js_get_form('a_pack', ['bid='.$p[0]]).'>';
+		$html = $b.$site.js_get_form('a_pack', ['bid='.$p[0], 'mode='.$p[1]]).'>';
 		$html .= $plus.' Kiszerelés'.$_b;
 		break;
 
