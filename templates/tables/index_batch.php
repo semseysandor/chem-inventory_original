@@ -33,7 +33,7 @@
 				<td><?=change_log($row['id'], 'leltar_batch')?></td>
 				<?php if (!$historic) {
 					if ($_SESSION['USER_RIGHT_LELTAR'] >= 2) {
-						echo '<td>'.button('e_batch', [$row['id']]).'</td>';
+						echo '<td>'.button('e_batch', [$row['id'], 'index']).'</td>';
 					} else {
 						echo '<td></td>';
 					}

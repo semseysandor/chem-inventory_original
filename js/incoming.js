@@ -17,7 +17,7 @@ function selectCompound(ID, name) {
 	document.getElementById('compound_list').innerHTML = '';
 
 	// Show selected compound
-	document.getElementById('h3_selected_compound').innerHTML = ('Vegyszer: ' + name);
+	document.getElementById('comp_select').innerHTML = ('Vegyszer: ' + name);
 }
 
 /**

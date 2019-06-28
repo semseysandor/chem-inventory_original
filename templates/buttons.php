@@ -109,7 +109,7 @@ function button($button, array $p = NULL) {
 		break;
 
 	case 'e_batch':
-		$html = $s.$hover.js_get_form('e_batch', ['bid='.$p[0], 'mode=index']).'>';
+		$html = $s.$hover.js_get_form('e_batch', ['bid='.$p[0], 'mode='.$p[1]]).'>';
 		$html .= $pencil_black.$_s;
 		break;
 

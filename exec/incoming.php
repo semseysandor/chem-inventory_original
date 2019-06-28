@@ -12,6 +12,10 @@ session_start();
 if (session_status() != PHP_SESSION_ACTIVE) {exit;}
 
 try {
+
+	// Security check
+	security_check('leltar', 2);
+
 	// Get query (what to retrieve)
 	$query = get_query('q', TRUE, 'string');
 
@@ -37,10 +41,14 @@ try {
 
 	// Batch list
 	if ($query == 'batch') {
-		
+
 		$comp_id = get_query('cid');
-		
-		echo $comp_id;
+
+		$result = sql_get_batch($link, $comp_id, 1);
+
+		// Batch list
+		require(ROOT.'/templates/incoming/batch.php');
+
 	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>

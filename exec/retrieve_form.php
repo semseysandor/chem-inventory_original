@@ -190,6 +190,10 @@ try {
 				$javascript = js('submit', ['batch&cid='.$comp_id, 'batch_'.$comp_id]);
 			} elseif ($mode == 'search') {
 				$javascript = js_spec('search_form', [$barcode]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_batch',[$comp_id]);
+			} else {
+				exit;
 			}
 
 			// Edit batch form
