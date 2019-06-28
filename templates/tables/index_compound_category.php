@@ -11,7 +11,7 @@
 		</button>
 	</span>
 <?php endwhile; ?>
-<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 1): ?>
+<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 3): ?>
 	<span class="float-right"><?=button('a_comp', ['index'])?></span>
 <?php endif; ?>
 <?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2): ?>
