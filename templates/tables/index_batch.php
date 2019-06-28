@@ -6,7 +6,7 @@
 			<span><?=button('batch_hist', [$comp_id])?></span>
 		<?php endif; ?>
 		<?php if (isset($comp_id) and $_SESSION['USER_RIGHT_LELTAR'] >= 2 and !$historic): ?>
-			<span class="float-right"><?=button('a_batch', [$comp_id])?></span>
+			<span class="float-right"><?=button('a_batch', [$comp_id, 'index'])?></span>
 		<?php endif; ?>
 	</nav>
 	<?php if($result->num_rows > 0): ?>

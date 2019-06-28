@@ -176,7 +176,7 @@ function button($button, array $p = NULL) {
 		break;
 
 	case 'a_batch':
-		$html = $b.$site.js_get_form('a_batch', ['cid='.$p[0]]).'>';
+		$html = $b.$site.js_get_form('a_batch', ['cid='.$p[0], 'mode='.$p[1]]).'>';
 		$html .= $plus.' Termék'.$_b;
 		break;
 

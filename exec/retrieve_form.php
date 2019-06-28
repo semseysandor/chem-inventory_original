@@ -49,13 +49,23 @@ try {
 	// Add batch
 	if ($query == 'a_batch') {
 
+		// Get
 		$comp_id = get_query('cid');
+		$mode = get_query('mode', TRUE, 'string');
 
 		$result = sql_get_comp_info($link, $comp_id);
 
 		if ($result->num_rows == 1) { # Compound found
 
 			$comp_name = $result->fetch_object()->name;
+
+			if ($mode == 'index') {
+				$javascript = js('submit', ['batch&cid='.$comp_id, 'batch_'.$comp_id]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_batch', [$comp_id]);
+			} else {
+				exit;
+			}
 
 			include(ROOT.'/templates/forms/add/batch.php');
 
