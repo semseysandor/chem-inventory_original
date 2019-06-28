@@ -5,10 +5,11 @@
 	<?php else: ?>
 		<span><?=button('pack_hist', [$batch_id])?></span>
 	<?php endif; ?>
-	<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2 and !$historic): ?>
-		<span class="float-right"><?=button('a_pack', [$batch_id])?></span>
+	<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 3 and !$historic): ?>
+		<span class="float-right"><?=button('a_pack', [$batch_id, 'index'])?></span>
 	<?php endif; ?>
 	</nav>
+	<?php if ($result->num_rows > 0): ?>
 	<table class="list">
 		<thead>
 			<tr>
@@ -21,14 +22,13 @@
 				<th>Vonalkód</th>
 			</tr>
 		</thead>
-	<?php if ($result->num_rows > 0): ?>
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr class="cursor-def">
 				<td><?php change_log($row['pack_id'], 'leltar_pack');?></td>
 				<?php if (!$historic) {
 					if ($_SESSION['USER_RIGHT_LELTAR'] >= 2) {
-						echo '<td>'.button('e_pack', [$row['pack_id']]).'</td>';
+						echo '<td>'.button('e_pack', [$row['pack_id'], 'index']).'</td>';
 					} else {
 						echo '<td></td>';
 					}
@@ -62,7 +62,6 @@
 		</tbody>
 	</table>
 	<?php else: ?>
-	</table>
 	<?=message('0', (($historic) ? 'Nincsenek histórikus kiszerelések' : 'Nincsenek kiszerelések'))?>
 	<?php endif; ?>
 </div>

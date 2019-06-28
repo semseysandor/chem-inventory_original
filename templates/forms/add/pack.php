@@ -1,5 +1,5 @@
 <div class="card">
-<form action="exec/add.php" method="post" <?=js('submit', ['pack&bid='.$batch_id, 'pack_'.$batch_id])?>>
+<form action="exec/add.php" method="post" <?=$javascript?>>
 <div class="block">
 	<span class="float-left">
 		<div>

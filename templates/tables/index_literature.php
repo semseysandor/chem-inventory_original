@@ -1,3 +1,4 @@
+	<?php if ($result->num_rows >= 1) : ?>
 	<table class="list">
 		<thead>
 			<tr>
@@ -10,7 +11,6 @@
 				<th colspan="2">Fájl</th>
 			</tr>
 		</thead>
-	<?php if ($result->num_rows >= 1) : ?>
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<?php if ($literature = search_file('literature', $row['id'])): ?>
@@ -37,7 +37,6 @@
 		</tbody>
 	</table>
 	<?php else: ?>
-	</table>
 	<?=message('0', 'Nincs irodalom')?>
 	<?php endif; ?>
 </div>

@@ -31,19 +31,41 @@ try {
 
 	// Add compound
 	if ($query == 'a_comp') {
+
+		// Get mode
+		$mode = get_query('mode', TRUE, 'string');
+
+		if ($mode == 'index') {
+			$javascript = js('submit', ['compound', 'index']);
+		} elseif ($mode == 'incoming') {
+			$javascript = js_spec('inc_form_comp');
+		} else {
+			exit;
+		}
+
 		include(ROOT.'/templates/forms/add/compound.php');
 	}
 
 	// Add batch
 	if ($query == 'a_batch') {
 
+		// Get
 		$comp_id = get_query('cid');
+		$mode = get_query('mode', TRUE, 'string');
 
 		$result = sql_get_comp_info($link, $comp_id);
 
 		if ($result->num_rows == 1) { # Compound found
 
 			$comp_name = $result->fetch_object()->name;
+
+			if ($mode == 'index') {
+				$javascript = js('submit', ['batch&cid='.$comp_id, 'batch_'.$comp_id]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_batch', [$comp_id]);
+			} else {
+				exit;
+			}
 
 			include(ROOT.'/templates/forms/add/batch.php');
 
@@ -53,13 +75,23 @@ try {
 	// Add pack
 	if ($query == 'a_pack') {
 
+		// Get
 		$batch_id = get_query('bid');
+		$mode = get_query('mode', TRUE, 'string');
 
 		$result = sql_get_batch_info($link, $batch_id);
 
 		if ($result->num_rows == 1) { # Batch found
 
 			$data = $result->fetch_assoc();
+
+			if ($mode == 'index') {
+				$javascript = js('submit', ['pack&bid='.$batch_id, 'pack_'.$batch_id]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_pack', [$batch_id]);
+			} else {
+				exit;
+			}
 
 			// Batch info
 			$comp = $data['comp_name'];
@@ -135,6 +167,10 @@ try {
 				$javascript = js('submit', ['compound', 'index']);
 			} elseif ($mode == 'search') {
 				$javascript = js_spec('search_form', [$barcode]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_comp');
+			} else {
+				exit;
 			}
 
 			// Edit compound form
@@ -174,6 +210,10 @@ try {
 				$javascript = js('submit', ['batch&cid='.$comp_id, 'batch_'.$comp_id]);
 			} elseif ($mode == 'search') {
 				$javascript = js_spec('search_form', [$barcode]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_batch',[$comp_id]);
+			} else {
+				exit;
 			}
 
 			// Edit batch form
@@ -214,6 +254,10 @@ try {
 				$javascript = js('submit', ['pack&bid='.$batch_id, 'pack_'.$batch_id]);
 			} elseif ($mode == 'search') {
 				$javascript = js_spec('search_form', [$barcode]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_pack',[$batch_id]);
+			} else {
+				exit;
 			}
 
 			// Edit pack form

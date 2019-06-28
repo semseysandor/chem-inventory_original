@@ -145,6 +145,35 @@ function js_spec($select, array $p = NULL) {
 		$js = $cli.'"inactivate('.$p[0].','.$p[1].',\''.$p[2].'\')"';
 		break;
 
+	// Incoming
+	case 'inc_start':
+		$js = $cli.$retr.'incoming.php?q=start\', \'index\')"';
+		break;
+
+	case 'inc_comp':
+		$js = $sub.$prevent.'retrieveData(\'exec/incoming.php?q=compound&comp=\' + this.q.value, \'incoming\')"';
+		break;
+
+	case 'inc_form_comp':
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=compound&comp=\' + this.name.value, \'incoming\')"';
+		break;
+
+	case 'inc_form_batch':
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=batch&cid='.$p[0].'\', \'batch_list\')"';
+		break;
+
+	case 'inc_form_pack':
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=pack&bid='.$p[0].'\', \'pack_list\')"';
+		break;
+
+	case 'inc_select_comp':
+		$js = $cli.'"selectCompound('.$p[0].', \''.$p[1].'\')"';
+		break;
+
+	case 'inc_select_batch':
+		$js = $cli.'"selectBatch('.$p[0].', \''.$p[1].'\', \''.$p[2].'\', \''.$p[3].'\')"';
+		break;
+
 	// Forms
 	case 'search_form':
 		$js = $sub.$prevent.$submit.'retrieveData, \'exec/search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\')"';

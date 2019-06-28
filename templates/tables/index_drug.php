@@ -5,6 +5,7 @@
 		<span class="float-right"><?=button('a_drug', [$api_id])?></span>
 	<?php endif; ?>
 	</nav>
+	<?php if ($result->num_rows >= 1) : ?>
 	<table class="list">
 		<thead>
 			<tr>
@@ -20,7 +21,6 @@
 				<th>Megjegyzés</th>
 			</tr>
 		</thead>
-	<?php if ($result->num_rows >= 1) : ?>
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr class="cursor-pointer">
@@ -67,6 +67,5 @@
 		</tbody>
 	</table>
 	<?php else: ?>
-	</table>
 	<?=message('0', 'Nincsenek gyógyszerek')?>
 	<?php endif; ?>
