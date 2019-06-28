@@ -162,6 +162,10 @@ function js_spec($select, array $p = NULL) {
 		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=batch&cid='.$p[0].'\', \'batch_list\')"';
 		break;
 
+	case 'inc_form_pack':
+		$js = $sub.$prevent.$submit.'retrieveData, \'exec/incoming.php?q=pack&bid='.$p[0].'\', \'pack_list\')"';
+		break;
+
 	case 'inc_select_comp':
 		$js = $cli.'"selectCompound('.$p[0].', \''.$p[1].'\')"';
 		break;

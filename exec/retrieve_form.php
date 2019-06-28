@@ -244,6 +244,10 @@ try {
 				$javascript = js('submit', ['pack&bid='.$batch_id, 'pack_'.$batch_id]);
 			} elseif ($mode == 'search') {
 				$javascript = js_spec('search_form', [$barcode]);
+			} elseif ($mode == 'incoming') {
+				$javascript = js_spec('inc_form_pack',[$batch_id]);
+			} else {
+				exit;
 			}
 
 			// Edit pack form

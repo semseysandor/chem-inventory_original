@@ -28,7 +28,7 @@
 				<td><?php change_log($row['pack_id'], 'leltar_pack');?></td>
 				<?php if (!$historic) {
 					if ($_SESSION['USER_RIGHT_LELTAR'] >= 2) {
-						echo '<td>'.button('e_pack', [$row['pack_id']]).'</td>';
+						echo '<td>'.button('e_pack', [$row['pack_id'], 'index']).'</td>';
 					} else {
 						echo '<td></td>';
 					}

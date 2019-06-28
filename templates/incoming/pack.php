@@ -20,7 +20,7 @@
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr class="cursor-def">
 				<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2): ?>
-						<td><?=button('e_pack', [$row['pack_id']])?></td>
+						<td><?=button('e_pack', [$row['pack_id'], 'incoming'])?></td>
 					<?php else: ?>
 						<td></td>
 					<?php endif; ?>
