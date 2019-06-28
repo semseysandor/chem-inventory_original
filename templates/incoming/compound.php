@@ -50,5 +50,5 @@
 </section>
 <h3 id="comp_select"></h3>
 <section id="batch_list"></section>
-<h3 id="h3_selected_batch"></h3>
-<section id="section_pack_list"></section>
+<h3 id="batch_select"></h3>
+<section id="pack_list"></section>

@@ -166,6 +166,10 @@ function js_spec($select, array $p = NULL) {
 		$js = $cli.'"selectCompound('.$p[0].', \''.$p[1].'\')"';
 		break;
 
+	case 'inc_select_batch':
+		$js = $cli.'"selectBatch('.$p[0].', \''.$p[1].'\', \''.$p[2].'\', \''.$p[3].'\')"';
+		break;
+
 	// Forms
 	case 'search_form':
 		$js = $sub.$prevent.$submit.'retrieveData, \'exec/search.php?q='.$p[0].'\', \'index\', getSmiles, \'barcode\', \''.$p[0].'\')"';

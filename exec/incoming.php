@@ -50,5 +50,17 @@ try {
 		require(ROOT.'/templates/incoming/batch.php');
 
 	}
+
+	// Pack list
+	if ($query == 'pack') {
+
+		$batch_id = get_query('bid');
+
+		$result = sql_get_pack($link, $batch_id, 1);
+
+		// Pack list
+		require(ROOT.'/templates/incoming/pack.php');
+
+	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>

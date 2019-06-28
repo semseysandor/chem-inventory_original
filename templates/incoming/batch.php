@@ -21,24 +21,24 @@
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr class="cursor-pointer">
-				<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2) {
-						echo '<td>'.button('e_batch', [$row['id'], 'incoming']).'</td>';
-					} else {
-						echo '<td></td>';
-					}?>
-				<td>
+				<?php if ($_SESSION['USER_RIGHT_LELTAR'] >= 2): ?>
+						<td><?=button('e_batch', [$row['id'], 'incoming'])?></td>
+					<?php else: ?>
+						<td></td>
+					<?php endif; ?>
+				<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 					<?=$row['manfac_name']?>
 				</td>
-				<td>
+				<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 					<?=$row['name']?>
 				</td>
-				<td>
+				<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 					<?=$row['lot']?>
 				</td>
-				<td>
+				<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 					<?=$row['date_arr']?>
 				</td>
-				<td>
+				<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 					<?=$row['date_open']?>
 				</td>
 				<?php if (isset($row['date_exp'])): ?>
@@ -48,19 +48,19 @@
 					$date_today = date_create(date('Y-m-d'));?>
 
 					<?php if ($date_expire <= $date_today): ?>
-						<td class="red bold" >
+						<td class="red bold" <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 							<?=$row['date_exp']?>
 						</td>
 					<?php else: ?>
-						<td >
+						<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 							<?=$row['date_exp']?>
 						</td>
 					<?php endif; ?>
 				<?php else: ?>
-					<td ></td>
+					<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>></td>
 				<?php endif; ?>
 
-				<td>
+				<td <?=js_spec('inc_select_batch', [$row['id'], $row['manfac_name'], $row['name'], $row['lot']])?>>
 					<?=$row['note']?>
 				</td>
 			</tr>
