@@ -9,6 +9,7 @@
 		<span class="float-right"><?=button('a_pack', [$batch_id])?></span>
 	<?php endif; ?>
 	</nav>
+	<?php if ($result->num_rows > 0): ?>
 	<table class="list">
 		<thead>
 			<tr>
@@ -21,7 +22,6 @@
 				<th>Vonalkód</th>
 			</tr>
 		</thead>
-	<?php if ($result->num_rows > 0): ?>
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr class="cursor-def">
@@ -62,7 +62,6 @@
 		</tbody>
 	</table>
 	<?php else: ?>
-	</table>
 	<?=message('0', (($historic) ? 'Nincsenek histórikus kiszerelések' : 'Nincsenek kiszerelések'))?>
 	<?php endif; ?>
 </div>

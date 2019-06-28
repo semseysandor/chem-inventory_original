@@ -1,14 +1,15 @@
 <div class="unit">
 	<nav class="block">
-	<?php if (isset($comp_id) and $historic): ?>
-		<span><?=button('batch_act', [$comp_id])?></span>
-	<?php elseif (isset($comp_id) and !$historic): ?>
-		<span><?=button('batch_hist', [$comp_id])?></span>
-	<?php endif; ?>
-	<?php if (isset($comp_id) and $_SESSION['USER_RIGHT_LELTAR'] >= 2 and !$historic): ?>
-		<span class="float-right"><?=button('a_batch', [$comp_id])?></span>
-	<?php endif; ?>
+		<?php if (isset($comp_id) and $historic): ?>
+			<span><?=button('batch_act', [$comp_id])?></span>
+		<?php elseif (isset($comp_id) and !$historic): ?>
+			<span><?=button('batch_hist', [$comp_id])?></span>
+		<?php endif; ?>
+		<?php if (isset($comp_id) and $_SESSION['USER_RIGHT_LELTAR'] >= 2 and !$historic): ?>
+			<span class="float-right"><?=button('a_batch', [$comp_id])?></span>
+		<?php endif; ?>
 	</nav>
+	<?php if($result->num_rows > 0): ?>
 	<table class="list">
 		<thead>
 			<tr>
@@ -26,7 +27,6 @@
 				<th>Megjegyzés</th>
 			</tr>
 		</thead>
-	<?php if($result->num_rows > 0): ?>
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr class="cursor-pointer">
@@ -115,7 +115,6 @@
 		</tbody>
 	</table>
 	<?php else: ?>
-	</table>
 	<?=message('0', (($historic) ? 'Nincsenek histórikus termékek' : 'Nincsenek termékek'))?>
 	<?php endif; ?>
 </div>
