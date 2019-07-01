@@ -43,8 +43,8 @@ and search the database.
 
 1. Install a web server (like Apache) with support for PHP5
 2. Install a LDAP server
-3. **Copy all the source (/src)** files to host on your web server
-4. Setup a MySQL server and import **DB_structure.sql**
+3. **Copy all the source (/src) files** to host on your web server
+4. Setup a MySQL server and **import DB_structure.sql**
 5. **Edit config.php** with your credentials (database & LDAP)
 6. (optional) Load the database with sample data (DB_sample_data.sql)
 
