@@ -1,0 +1,109 @@
+/**
+ * Stylesheet for LelTar
+ *
+ * Tables
+ *********************************************************/
+
+/* General */
+table {border-collapse: collapse;}
+
+/*
+ * Form tables
+ *******************/
+
+table.form th,
+table.form td {
+	display: block;
+	padding: .25em;
+}
+table.form th {
+	font-weight: normal;
+	text-align: left;
+}
+table.form caption {
+	border-bottom: .06em solid black;
+	padding: .25em;
+}
+
+/* RWD */
+@media only screen and (min-width: 350px) {
+	table.form th,
+	table.form td {display: table-cell;}
+	table.form th {text-align: right;}
+}
+
+/*
+ * Compound details
+ *******************/
+
+table.comp_det tbody {
+	border-left: .06em solid black;
+	border-right: .06em solid black;
+}
+
+table.comp_det caption {
+	background: wheat;
+	border-radius: .5em .5em 0 0;
+	border-bottom: .15em solid black;
+	padding: .25em .5em;
+}
+table.comp_det th,
+table.comp_det td {
+	display: block;
+	padding: .25em .5em;
+	word-break: break-word;
+}
+table.comp_det tr {border-bottom: .08em solid black;}
+table.comp_det th {text-align: left;}
+
+table.comp_det tr:nth-child(even) {background: rgb(235, 235, 235);}
+
+/* RWD */
+@media only screen and (min-width: 350px) {
+	table.comp_det th,
+	table.comp_det td {display: table-cell;}
+	table.comp_det th {text-align: right;}
+}
+
+/*
+ * Lists
+ *******************/
+
+table.list thead th {
+	background: wheat;
+	padding: .25em .5em;
+	font-weight: normal;
+}
+table.list thead tr {border-bottom: .15em solid black;}
+table.list thead tr th:first-child {border-radius: .5em 0 0 0;}
+table.list thead tr th:last-child {border-radius: 0 .5em 0 0;}
+
+table.list tbody td {padding: .25em;}
+
+table.list tbody {
+	border-left: .06em solid black;
+	border-right: .06em solid black;
+}
+table.list>tbody>tr:nth-child(odd) {border-bottom: .06em solid black;}
+
+table.list>tbody>tr:nth-child(4n+3) {background: rgb(235, 235, 235);}
+table.list>tbody>tr:nth-child(odd):hover {background: yellow;}
+
+table.list>tbody>tr:hover>td>*>* {visibility: visible;}
+
+/*
+ * Change details
+ *******************/
+
+table.change_details thead th {
+	background: wheat;
+	border: .06em solid black;
+	border-bottom: .12em solid black;
+}
+table.change_details tbody td {
+	min-width: 130px;
+	word-break: break-word;
+	border: .06em solid black;
+	padding: 0 .25em;
+}
+table.change_details tr {background: rgb(245, 245, 245);}

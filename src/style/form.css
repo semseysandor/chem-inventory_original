@@ -1,0 +1,40 @@
+/**
+ * Stylesheet for LelTar
+ *
+ * Forms
+ *********************************************************/
+
+/*
+ * General
+ ************/
+
+form {overflow:auto;}
+
+input, select, textarea {
+	padding: .25em;
+	border: .06em solid black;
+	border-radius: .25em;
+	width: 100%;
+}
+
+textarea {
+	height: 5em;
+	resize: none;
+}
+
+input:required, select:required {border-color: red;}
+
+/* Search */
+form.search {overflow:initial;}
+form.search input[type=search] {
+	border-color: black;
+	font-size: 1.2em;
+	width: 100%;
+}
+
+@media only screen and (min-width: 350px) {
+	form.search input[type=search] {width: auto;}
+}
+
+/* Login */
+form.login input {border-color: black;}

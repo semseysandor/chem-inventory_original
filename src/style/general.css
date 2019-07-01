@@ -1,0 +1,92 @@
+/**
+ * Stylesheet for LelTar
+ *
+ * General
+ *********************************************************/
+
+/*
+ * General
+ ************/
+
+/* Body */
+body {
+	background: hsl(0, 0%, 96%);
+	font-family: Tahoma, Geneva, sans-serif;
+	margin: auto;
+	padding: .25em;
+}
+
+hr {margin: .12em 0;}
+
+/* Images */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Heading */
+h1, h2, h3, h4, h5 {margin: .5em 0;}
+
+/*
+ * Quick styles
+ ************/
+
+/* Padding */
+.pad-no {padding: none;}
+.pad-xs {padding: .12em;}
+.pad-s {padding: .25em;}
+.pad-m {padding: .5em;}
+.pad-l {padding: 1em;}
+
+/* Font size */
+.font-s {font-size: .9em;}
+.font-m {font-size: 1em;}
+.font-l {font-size: 1.2em;}
+
+/* Font weight */
+.normal {font-weight: normal;}
+.bold {font-weight: bold;}
+
+/* Text align */
+.left {text-align: left;}
+.right {text-align: right;}
+.centered {text-align: center;}
+
+/* Text color */
+.black {color: black;}
+.red {color: red;}
+.green {color: forestgreen;}
+
+/* Floats */
+.float-left {
+	display: block;
+	float: none;
+}
+.float-right {
+	display: block;
+	float: none;
+}
+@media only screen and (min-width: 350px) {
+	.float-left {
+		display: block;
+		float: left;
+	}
+	.float-right {
+		display: block;
+		float: right;
+	}
+}
+
+/* Cursor */
+.cursor-pointer {cursor: pointer;}
+.cursor-def {cursor: default;}
+
+/* Display */
+.no-show {display:none;}
+
+/* Hover */
+.hover {visibility: hidden;}
+
+/* Overflow */
+.of-auto {overflow: auto;}
+.of-vis {overflow: visible;}
