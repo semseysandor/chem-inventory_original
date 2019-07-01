@@ -5,7 +5,7 @@
 
 $config = require('default.php');
 
-$config['title'] = 'NGX LelTár - Bejelentkezés';
+$config['title'] = 'LelTár - Bejelentkezés';
 
 require(ROOT.'/templates/head.php');?>
 <header>

@@ -21,7 +21,7 @@ require(ROOT.'/templates/buttons.php');
 return [
 
 	// HTML title
-	'title' => 'NGX Leltár',
+	'title' => 'Leltár',
 
 	// Stylesheets
 	'stylesheet' => [
