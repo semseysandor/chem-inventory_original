@@ -11,7 +11,7 @@ require(ROOT.'/templates/head.php');?>
 <header>
 	<div>
 		<a href ="index.php">
-			<img src="icons/logo_nangenex.png" alt="NGX" class="rwd" width="252" height="63" />
+			<img src="icons/logo.png" alt="logo" class="rwd" width="293" height="91" />
 		</a>
 	</div>
 </header>
