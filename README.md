@@ -35,17 +35,18 @@ and search the database.
 * Add/edit compounds, batches and packs
 * Inactivate packs when getting empty
 * Changelog for audit trails
-* Search with autocomplete
+* Search chemicals with autocomplete
 * Generate barcodes
 * Drawing chemical structures
 
 ## INSTALLATION
 
-1. Install a web server (like Apache) with support for PHP version 5.5.9
+1. Install a web server (like Apache) with support for PHP5
 2. Install a LDAP server
-3. Copy all the source files to host on your server
-4. Setup a MySQL server and import DB_structure.sql files
-5. Edit config.php with your credentials
+3. **Copy all the source (/src) files** to host on your web server
+4. Setup a MySQL server and **import DB_structure.sql**
+5. **Edit config.php** with your credentials (database & LDAP)
+6. (optional) Load the database with sample data (DB_sample_data.sql)
 
 ## LICENSE
 
