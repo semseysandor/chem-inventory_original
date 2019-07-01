@@ -12,6 +12,6 @@ define('DB_NAME', 'inventory');		# database name
 
 // LDAP server
 define('LDAP_HOST', 'your_host');						# LDAP host
-define('LDAP_DN', 'your_dn');								# LDAP dn
-define('LDAP_USR_DOM', 'your_user_domain');	# LDAP user domain
+define('LDAP_DN', 'CN=Users,DC=company,DC=local');								# LDAP dn
+define('LDAP_USR_DOM', '@company.local');	# LDAP user domain
 ?>
