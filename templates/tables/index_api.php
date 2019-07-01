@@ -3,6 +3,7 @@
 	<span class="float-right"><?=button('a_api')?></span>
 <?php endif; ?>
 </div>
+<?php if ($result->num_rows > 0): ?>
 <div class="pad-s of-auto">
 	<table class="list">
 	<thead>
@@ -22,7 +23,6 @@
 			<th>Megjegyzés</th>
 		</tr>
 	</thead>
-<?php if ($result->num_rows > 0): ?>
 	<tbody>
 	<?php while ($row = $result->fetch_assoc()): ?>
 		<tr class="cursor-pointer">
@@ -77,8 +77,7 @@
 	<?php endwhile; ?>
 	</tbody>
 </table>
+</div>
 <?php else: ?>
-</table>
 <?=message('0', 'Nincsenek API-k az adatbázisban')?>
 <?php endif; ?>
-</div>

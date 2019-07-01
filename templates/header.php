@@ -14,6 +14,9 @@ switch ($_SESSION['USER_RIGHT_LELTAR']) {
 		$level = 'Admin';
 		break;
 	case 3:
+		$level = 'ÜberAdmin';
+		break;
+	case 4:
 		$level = 'System Manager';
 		break;
 	default:
