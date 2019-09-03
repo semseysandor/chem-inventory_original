@@ -17,7 +17,8 @@ storages* (e.g. shelves of a cupboard). Anyway, you can use any logic, neverthel
 there is a 3-tier location system.
 
 Compound, batch and pack management is through the web interface.
-Locations & manufacturers are stored in the database as well as user right levels.
+Locations & manufacturers are stored in the database as well as user right levels,
+so you can manipulate them with a database management software or plain SQL.
 
 Barcodes are assigned to each pack, so you can use labels for identification
 in the lab. (barcode printing is not implemented yet in this application)
