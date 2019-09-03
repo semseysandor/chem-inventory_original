@@ -180,7 +180,7 @@ function js_spec($select, array $p = NULL) {
 		break;
 
 	case 'search':
-		$js = $sub.$prevent.'retrieveData(\'exec/search.php?q=\' + this.q.value, \'index\', getSmiles, \'barcode\', this.q.value);';
+		$js = $sub.$prevent.'retrieveData(\'exec/search.php?q=\' + encodeURIComponent(this.q.value), \'index\', getSmiles, \'barcode\', this.q.value);';
 		$js .= $close.'"';
 		break;
 
