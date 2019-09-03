@@ -458,7 +458,7 @@ function sql_update_literature($link, $literature_id, $title, $author,
 
 	$stmt = $link->init();
 	$stmt = $link->prepare('
-	UPDATE 
+	UPDATE
 		api_literature
 	SET
 		title = ?,
@@ -472,6 +472,44 @@ function sql_update_literature($link, $literature_id, $title, $author,
 	');
 	$stmt->bind_param('ssssssi',$title, $author, $year, $journal,
 															$note, $user_name, $literature_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * UPDATE solvent units
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$solvent_id
+ * @param		int					$unit
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_solvent($link, $solvent_id, $unit, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		leltar_solvent
+	SET
+		unit = ?,
+		last_mod_by = ?
+	WHERE
+		leltar_solvent.solvent_id = ?
+	');
+	$stmt->bind_param('isi', $unit, $user_name, $solvent_id);
 
 	if (!($stmt->execute())) {
 		throw new leltar_exception('sql_fail', 1);

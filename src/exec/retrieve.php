@@ -318,5 +318,14 @@ try {
 			}
 		}
 	}
+
+	// Solvents
+	if ($query == 'solvent') {
+
+		$result = sql_get_solvents($link);
+
+		// Solvents
+		require(ROOT.'/templates/tables/solvents.php');
+	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>

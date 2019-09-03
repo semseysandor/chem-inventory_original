@@ -20,6 +20,7 @@ function button($button, array $p = NULL) {
 	// Classes
 	$hover = 'class="hover cursor-pointer" ';
 	$site = 'class="button site" ';
+	$site_bold = 'class="button site bold" ';
 	$site_m = 'class="button site font-m" ';
 
 	// Icons
@@ -29,6 +30,7 @@ function button($button, array $p = NULL) {
 	$info = '<i class="fas fa-info black"></i>';
 	$exch = '<i class="fas fa-exchange-alt"></i>';
 	$plus = '<i class="fas fa-plus"></i>';
+	$minus = '<i class="fas fa-minus"></i>';
 	$file = '<i class="far fa-file-pdf"></i>';
 	$window = '<i class="far fa-window-close"></i>';
 	$upload = '<i class="fas fa-upload"></i>';
@@ -219,6 +221,15 @@ function button($button, array $p = NULL) {
 	case 'up_liter':
 		$html = $s.$hover.js_get_form('up_liter', ['lid='.$p[0]]).'>';
 		$html .= $upload.$_s;
+		break;
+
+	// Modify solvent unit
+	case 's_add':
+		$html = $b.$site_bold.js_spec('solvent', [$p[1], $p[2]]).'>'.$plus.' '.$p[0].$_b;
+		break;
+
+	case 's_reduce':
+		$html = $b.$site_bold.js_spec('solvent', [$p[1], $p[2]]).'>'.$minus.' '.$p[0].$_b;
 		break;
 
 	// Default

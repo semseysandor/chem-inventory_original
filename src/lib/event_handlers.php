@@ -198,6 +198,11 @@ function js_spec($select, array $p = NULL) {
 		$js = $cli.'"getChangeHistoryDetails('.$p[0].',\''.$p[1].'\','.$p[2].')"';
 		break;
 
+	// Modify solvent units
+	case 'solvent':
+		$js = $cli.$exec.'solvents.php?sid='.$p[0].'&unit='.$p[1].'\', \'msg_center\', retrieveData, \'exec/retrieve.php?q=solvent\',\'index\')"';
+		break;
+
 	// Default
 	default:
 		return FALSE;

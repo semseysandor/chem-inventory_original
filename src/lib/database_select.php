@@ -190,6 +190,38 @@ function sql_get_pk_attribute($link) {
 	return $result;
 }
 
+/**
+ * Retrieve solvents
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_solvents($link) {
+
+	$sql = '
+	SELECT
+		leltar_solvent.solvent_id,
+		leltar_solvent.name,
+		leltar_solvent.type,
+		leltar_solvent.volume,
+		leltar_solvent.unit
+	FROM leltar_solvent
+	ORDER BY
+		leltar_solvent.name,
+		leltar_solvent.type
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
 // Parameterized SELECT queries
 
 /**
