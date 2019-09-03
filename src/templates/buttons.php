@@ -20,7 +20,6 @@ function button($button, array $p = NULL) {
 	// Classes
 	$hover = 'class="hover cursor-pointer" ';
 	$site = 'class="button site" ';
-	$site_bold = 'class="button site bold" ';
 	$site_m = 'class="button site font-m" ';
 
 	// Icons
@@ -225,11 +224,11 @@ function button($button, array $p = NULL) {
 
 	// Modify solvent unit
 	case 's_add':
-		$html = $b.$site_bold.js_spec('solvent', [$p[1], $p[2]]).'>'.$plus.' '.$p[0].$_b;
+		$html = $b.'class="button submit font-l" '.js_spec('solvent', [$p[1], $p[2]]).'>'.$plus.' '.$p[0].$_b;
 		break;
 
 	case 's_reduce':
-		$html = $b.$site_bold.js_spec('solvent', [$p[1], $p[2]]).'>'.$minus.' '.$p[0].$_b;
+		$html = $b.'class="button delete font-l" '.js_spec('solvent', [$p[1], $p[2]]).'>'.$minus.' '.$p[0].$_b;
 		break;
 
 	// Default

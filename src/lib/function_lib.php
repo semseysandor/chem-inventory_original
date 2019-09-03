@@ -98,20 +98,18 @@ function get_query($name, $required = TRUE, $type = 'int' ) {
 		} elseif ($type == 'int') { # Parameter is an integer
 
 			$param = filter_var($param, FILTER_SANITIZE_NUMBER_INT);
-			$param = intval($param);
 
-			if ($param > 0) {
-
-				return $param;
-
-			} else {
-
+			// If it doesn't contain any numbers
+			if ($param == NULL) {
 				if ($required) {
 					throw new leltar_exception('not_valid_id',1);
 				} else {
 					return FALSE;
 				}
 			}
+
+			return intval($param);
+
 		} else {
 			return FALSE;
 		}
