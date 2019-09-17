@@ -4,7 +4,6 @@
 		<thead>
 			<tr>
 				<th>Anyag</th>
-				<th colspan="2">Kiszerelés</th>
 				<th>Darab</th>
 				<th>Összesen</th>
 				<th colspan="4"></th>
@@ -13,10 +12,11 @@
 		<tbody>
 		<?php while ($row = $result->fetch_assoc()): ?>
 			<tr>
-				<td class="bold"><?=$row['name']?></td>
-				<td><?=$row['type']?></td>
-				<td class="right"><?=$row['volume'].' L'?></td>
-				<td class="centered bold"><?=$row['unit']?></td>
+				<td>
+					<strong><?=$row['name']?></strong><br/>
+					<?=$row['type'] . ' - ' . $row['volume'].' L'?><br/>
+				</td>
+				<td class="centered bold font-l"><?=$row['unit']?></td>
 				<td class="centered"><?=($row['volume'] * $row['unit']) .' L'?></td>
 				<?php if ($row['unit'] >= 4): ?>
 					<td><?=button('s_reduce', [4, $row['solvent_id'], $row['unit']-4])?></td>
