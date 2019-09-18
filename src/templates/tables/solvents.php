@@ -6,7 +6,9 @@
 				<th>Anyag</th>
 				<th>Darab</th>
 				<th>Összesen</th>
-				<th colspan="4"></th>
+				<?php if ($_SESSION['USER_RIGHT_SOLVENT'] >=2): ?>
+					<th colspan="3"></th>
+				<?php endif; ?>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,13 +20,19 @@
 				</td>
 				<td class="centered bold font-l"><?=$row['unit']?></td>
 				<td class="centered"><?=($row['volume'] * $row['unit']) .' L'?></td>
-				<?php if ($row['unit'] >= 1): ?>
-					<td><?=button('s_reduce', [1, $row['solvent_id'], $row['unit']-1])?></td>
-				<?php else: ?>
-					<td></td>
+				<?php if ($_SESSION['USER_RIGHT_SOLVENT'] >=2): ?>
+					<?php if ($row['unit'] >= 1): ?>
+						<td><?=button('s_reduce', [1, $row['solvent_id'], $row['unit']-1])?></td>
+					<?php else: ?>
+						<td></td>
+					<?php endif; ?>
 				<?php endif; ?>
+				<?php if ($_SESSION['USER_RIGHT_SOLVENT'] >=2): ?>
 					<td><?=button('s_add', [1, $row['solvent_id'], $row['unit']+1])?></td>
+				<?php endif; ?>
+				<?php if ($_SESSION['USER_RIGHT_SOLVENT'] >=2): ?>
 					<td><?=button('s_add', [4, $row['solvent_id'], $row['unit']+4])?></td>
+				<?php endif; ?>
 				</td>
 			</tr>
 			<tr>
