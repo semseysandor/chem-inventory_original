@@ -18,11 +18,6 @@
 				</td>
 				<td class="centered bold font-l"><?=$row['unit']?></td>
 				<td class="centered"><?=($row['volume'] * $row['unit']) .' L'?></td>
-				<?php if ($row['unit'] >= 4): ?>
-					<td><?=button('s_reduce', [4, $row['solvent_id'], $row['unit']-4])?></td>
-				<?php else: ?>
-					<td></td>
-				<?php endif; ?>
 				<?php if ($row['unit'] >= 1): ?>
 					<td><?=button('s_reduce', [1, $row['solvent_id'], $row['unit']-1])?></td>
 				<?php else: ?>
