@@ -232,6 +232,7 @@ function search_user($link, $user) {
 		$_SESSION['USER_ID'] = $member['user_id'];
 		$_SESSION['USER_RIGHT_LELTAR'] = $member['right_level_leltar'];
 		$_SESSION['USER_RIGHT_API'] = $member['right_level_api'];
+		$_SESSION['USER_RIGHT_SOLVENT'] = $member['right_level_solvent'];
 
 		return TRUE;
 	} else { # User not in DB

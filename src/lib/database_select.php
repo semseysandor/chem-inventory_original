@@ -510,7 +510,6 @@ function sql_get_smiles_barcode($link, $barcode) {
 	return $result->fetch_object()->smiles;
 }
 
-
 /**
  * Retrieve compounds (all)
  *
@@ -1041,7 +1040,8 @@ function sql_get_user_info($link, $user_name) {
 	SELECT
 		main_users.user_id,
 		main_users.right_level_leltar,
-		main_users.right_level_api
+		main_users.right_level_api,
+		main_users.right_level_solvent
 	FROM main_users
 	WHERE main_users.name = ?
 	LIMIT 1

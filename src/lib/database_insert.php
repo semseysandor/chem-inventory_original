@@ -186,8 +186,9 @@ function sql_insert_user($link, $login, $user_name) {
 		(name,
 		right_level_leltar,
 		right_level_api,
+		right_level_solvent,
 		last_mod_by)
-	VALUES (?, DEFAULT, DEFAULT, ?)
+	VALUES (?, DEFAULT, DEFAULT, DEFAULT, ?)
 	');
 	$stmt->bind_param('ss', $login, $user_name);
 
