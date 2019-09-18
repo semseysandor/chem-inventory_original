@@ -30,6 +30,7 @@ switch ($_SESSION['USER_RIGHT_LELTAR']) {
 	</a>
 </div>
 <div class="col-s-8">
+	<div id="msg_center" class="float-left"></div>
 	<div class="float-right">
 		<div>
 			<div class="rwd">

@@ -13,7 +13,6 @@ require(ROOT.'/templates/header.php');
 require(ROOT.'/templates/menu.php');?>
 </header>
 <main>
-	<section id="msg_center"></section>
 	<section id="popup"></section>
 	<section id="index" class="unit"></section>
 </main>
