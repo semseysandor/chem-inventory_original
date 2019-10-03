@@ -5,8 +5,8 @@
 
 // DB login info
 
-define('DB_HOST', 'localhost');		# SQL user name
-define('DB_USER', 'DBuser');			# SQL server host name
+define('DB_HOST', 'localhost');		# SQL server host name
+define('DB_USER', 'DBuser');			# SQL user name
 define('DB_PASS', 'password');		# password
 define('DB_NAME', 'inventory');		# database name
 
