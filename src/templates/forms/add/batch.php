@@ -19,7 +19,7 @@
 			<tr>
 				<th>Gyártó</th>
 				<td>
-					<select id="manfac" required autofocus >
+					<select id="manfac" required >
 					<option></option>
 					<?php // Retrieve manufacturers
 						$freq = sql_get_manfac_freq($link);

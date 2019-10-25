@@ -62,6 +62,34 @@ function sql_get_manfac_infreq($link) {
 }
 
 /**
+ * Retrieve all manufacturers
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_manfac($link) {
+
+	$sql = '
+	SELECT
+		leltar_manfac.manfac_id AS id,
+		leltar_manfac.name,
+		leltar_manfac.is_frequent AS freq
+	FROM leltar_manfac
+	ORDER BY leltar_manfac.name
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
  * Retrieve categories
  *
  * @param		mysqli_link		$link
@@ -100,9 +128,126 @@ function sql_get_lab($link) {
 
 	$sql = '
 	SELECT
+		leltar_loc_lab.loc_lab_id AS id,
 		leltar_loc_lab.name
 	FROM leltar_loc_lab
 	ORDER BY leltar_loc_lab.name
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve places
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_place($link) {
+
+	$sql = '
+	SELECT
+		leltar_loc_place.loc_place_id as id,
+		leltar_loc_place.name
+	FROM leltar_loc_place
+	ORDER BY leltar_loc_place.name
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve subs
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_sub($link) {
+
+	$sql = '
+	SELECT
+		leltar_loc_sub.loc_sub_id as id,
+		leltar_loc_sub.name
+	FROM leltar_loc_sub
+	ORDER BY leltar_loc_sub.name
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve locations
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_location($link) {
+
+	$sql = '
+	SELECT
+		leltar_location_list.location_id AS id,
+		leltar_location_list.lab_name,
+		leltar_location_list.place_name,
+		leltar_location_list.sub_name
+	FROM leltar_location_list
+	ORDER BY
+		leltar_location_list.lab_name,
+		leltar_location_list.place_name,
+		leltar_location_list.sub_name
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve users
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_users($link) {
+
+	$sql = '
+	SELECT
+		main_users.user_id AS id,
+		main_users.name,
+		main_users.right_level_leltar AS chemical,
+		main_users.right_level_api AS api,
+		main_users.right_level_solvent AS solvent
+	FROM main_users
+	ORDER BY name
 	';
 	$result = $link->query($sql);
 
@@ -212,6 +357,44 @@ function sql_get_solvents($link) {
 	ORDER BY
 		leltar_solvent.name,
 		leltar_solvent.type
+	';
+	$result = $link->query($sql);
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve missing packs
+ *
+ * @param		mysqli_link		$link
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_missing($link) {
+
+	$sql = '
+	SELECT
+		leltar_all_info.pack_id,
+		leltar_all_info.batch_id,
+		leltar_all_info.comp,
+		leltar_all_info.batch,
+		leltar_all_info.lot,
+		leltar_all_info.date_arr,
+		leltar_all_info.size,
+		leltar_all_info.lab,
+		leltar_all_info.place,
+		leltar_all_info.sub,
+		leltar_all_info.pack_note,
+		leltar_all_info.barcode
+	FROM temp_missing
+		INNER JOIN leltar_all_info USING (pack_id)
+	ORDER BY lab, place, sub, comp, batch, lot
 	';
 	$result = $link->query($sql);
 
@@ -728,6 +911,47 @@ function sql_get_pack($link, $batch_id, $is_active) {
 }
 
 /**
+ * Retrieve packs at a location
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$location_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_pack_location($link, $location_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_pack.pack_id,
+		leltar_pack.is_original,
+		leltar_pack.size,
+		leltar_pack.weight,
+		leltar_pack.barcode,
+		leltar_pack.note
+	FROM leltar_pack
+	WHERE leltar_pack.location_id = ?
+	AND leltar_pack.is_active = 1
+	ORDER BY
+		leltar_pack.pack_id
+	');
+	$stmt->bind_param('i', $location_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
  * Retrieve all info on barcode
  *
  * @param		mysqli_link	$link
@@ -831,7 +1055,7 @@ function sql_check_compound($link, $name) {
 	}
 
 	if ($result->num_rows == 1) {
-		return TRUE;
+		return $result->fetch_object()->compound_id;
 	} else {
 		return FALSE;
 	}
@@ -879,11 +1103,11 @@ function sql_check_batch($link, $comp_id, $name, $manfac, $lot) {
 	}
 
 	if ($result->num_rows == 1) {
-		return TRUE;
+		return $result->fetch_object()->batch_id;
 	} else {
 		return FALSE;
 	}
-} 
+}
 
 /**
  * Retrieve sub-categories of given category
@@ -1047,6 +1271,43 @@ function sql_get_user_info($link, $user_name) {
 	LIMIT 1
 	');
 	$stmt->bind_param('s', $user_name);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve user data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$user_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_user_data($link, $user_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		main_users.name,
+		main_users.right_level_leltar AS chemical,
+		main_users.right_level_api AS api,
+		main_users.right_level_solvent AS solvent
+	FROM main_users
+	WHERE main_users.user_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $user_id);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
@@ -1955,6 +2216,499 @@ function sql_live_search($link, $query) {
 																						$query, $query, $query, $query, $query,
 																						$query, $query, $query, $query, $query,
 																						$query, $query, $query, $query, $query);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Checks if manufacturer exist in DB
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		if record found
+ *	FALSE		if no record found
+ */
+function sql_check_manfac($link, $name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_manfac.manfac_id
+	FROM
+		leltar_manfac
+	WHERE
+		leltar_manfac.name = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $name);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($result->num_rows == 1) {
+		return $result->fetch_object()->manfac_id;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Checks if lab exist in DB
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		if record found
+ *	FALSE		if no record found
+ */
+function sql_check_lab($link, $name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_loc_lab.loc_lab_id
+	FROM
+		leltar_loc_lab
+	WHERE
+		leltar_loc_lab.name = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $name);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($result->num_rows == 1) {
+		return $result->fetch_object()->loc_lab_id;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Checks if place exist in DB
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		if record found
+ *	FALSE		if no record found
+ */
+function sql_check_place($link, $name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_loc_place.loc_place_id
+	FROM
+		leltar_loc_place
+	WHERE
+		leltar_loc_place.name = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $name);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($result->num_rows == 1) {
+		return $result->fetch_object()->loc_place_id;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Checks if sub exist in DB
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		if record found
+ *	FALSE		if no record found
+ */
+function sql_check_sub($link, $name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_loc_sub.loc_sub_id
+	FROM
+		leltar_loc_sub
+	WHERE
+		leltar_loc_sub.name = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $name);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($result->num_rows == 1) {
+		return $result->fetch_object()->loc_sub_id;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Checks if location exist in DB
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$lab_id
+ * @param		int					$place_id
+ * @param		int					$sub_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		if record found
+ *	FALSE		if no record found
+ */
+function sql_check_location($link, $lab_id, $place_id, $sub_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_location.location_id
+	FROM
+		leltar_location
+	WHERE
+		leltar_location.loc_lab_id = ?
+		AND leltar_location.loc_place_id = ?
+		AND leltar_location.loc_sub_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('iii', $lab_id, $place_id, $sub_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($result->num_rows == 1) {
+		return $result->fetch_object()->location_id;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Retrieve manufacturer data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$manfac_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_manfac_data($link, $manfac_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_manfac.name,
+		leltar_manfac.is_frequent
+	FROM leltar_manfac
+	WHERE leltar_manfac.manfac_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $manfac_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve lab data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$lab_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_lab_data($link, $lab_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_loc_lab.name
+	FROM leltar_loc_lab
+	WHERE leltar_loc_lab.loc_lab_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $lab_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve place data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$place_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_place_data($link, $place_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_loc_place.name
+	FROM leltar_loc_place
+	WHERE leltar_loc_place.loc_place_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $place_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve sub data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$sub_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_sub_data($link, $sub_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_loc_sub.name
+	FROM leltar_loc_sub
+	WHERE leltar_loc_sub.loc_sub_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $sub_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve location data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$location_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_location_data($link, $location_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_location.loc_lab_id AS lab_id,
+		leltar_location.loc_place_id AS place_id,
+		leltar_location.loc_sub_id AS sub_id
+	FROM leltar_location
+	WHERE leltar_location.location_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $location_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Retrieve location name
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$location_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_get_location_name($link, $location_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_location_list.lab_name,
+		leltar_location_list.place_name,
+		leltar_location_list.sub_name
+	FROM leltar_location_list
+	WHERE leltar_location_list.location_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $location_id);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Check pack for inventory
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$barcode
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_inventory_check_pack($link, $barcode) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		leltar_pack.pack_id,
+		leltar_pack.location_id
+	FROM leltar_pack
+	WHERE leltar_pack.is_active = 1
+	AND leltar_pack.barcode = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('s', $barcode);
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+
+	$stmt->close();
+
+	if (!$result) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	return $result;
+}
+
+/**
+ * Check missing pack list for a pack
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$pack_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	mysqli_result
+ */
+function sql_inventory_check_missing($link, $pack_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	SELECT
+		temp_missing.id
+	FROM temp_missing
+	WHERE temp_missing.pack_id = ?
+	LIMIT 1
+	');
+	$stmt->bind_param('i', $pack_id);
 	$stmt->execute();
 
 	$result = $stmt->get_result();

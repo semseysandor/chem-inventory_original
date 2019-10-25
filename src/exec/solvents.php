@@ -19,7 +19,7 @@ try {
 	$response = [];
 
 	// Security check
-	security_check('leltar', 1);
+	security_check('solvent', 2);
 
 	// Get solvent id (sid)
 	$solvent_id = get_query('sid');

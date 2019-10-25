@@ -50,6 +50,14 @@ function security_check($domain, $level) {
 			return TRUE;
 		}
 
+	case 'solvent':
+		if ((!isset($_SESSION['USER_RIGHT_SOLVENT'])) or ($_SESSION['USER_RIGHT_SOLVENT'] < $level)) {
+			throw new leltar_exception('no_right',1);
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+
 	default:
 		throw new leltar_exception('no_right',1);
 		return FALSE;
@@ -489,5 +497,67 @@ function check_cas($cas) {
 	}
 
 	return FALSE;
+}
+
+/*
+ * User right level icon
+ *
+ * @param		int			$right_level
+ *
+ * @return	string	user right level text
+ */
+function right_level_icon($right_level) {
+
+	switch ($right_level) {
+
+		case 0:
+			return '<i class="far fa-user"></i>';
+
+		case 1:
+			return '<i class="fas fa-user"></i>';
+
+		case 2:
+			return '<i class="fas fa-user-shield"></i>';
+
+		case 3:
+			return '<i class="fas fa-dragon"></i>';
+
+		case 4:
+			return '<i class="fas fa-user-secret"></i>';
+
+		default:
+			return '<i class="fas fa-skull-crossbones"></i>';
+	}
+}
+
+/*
+ * User right level text
+ *
+ * @param		int			$right_level
+ *
+ * @return	string	user right level text
+ */
+function right_level_text($right_level) {
+
+	switch ($right_level) {
+
+		case 0:
+			return 'Vendég';
+
+		case 1:
+			return 'Felhasználó';
+
+		case 2:
+			return 'Adminisztrátor';
+
+		case 3:
+			return 'Über-admin';
+
+		case 4:
+			return 'System Manager';
+
+		default:
+			return 'HACK';
+	}
 }
 ?>

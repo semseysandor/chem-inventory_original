@@ -22,13 +22,14 @@
 
 @media only screen and (min-width: 350px) {
 	.button {
-		display: inline;
+		display: inline-block;
 		width: auto;
 	}
 }
 
 /* Menu & Category & Pagination & Submit */
-button.menu {padding: .5em;}
+button.menu,
+div.admin {padding: .5em;}
 button.menu,
 button.category,
 button.pagination,
@@ -51,7 +52,8 @@ button.logout {
 
 /* Selected buttons */
 button.selected,
-button.restart {
+button.restart,
+div.admin {
 	background-color: hsl(210, 100%, 56%);
 	border-color: hsl(210, 100%, 26%);
 }
@@ -63,7 +65,8 @@ button.delete, button.close {
 }
 
 /* Barcode */
-button.barcode {
+button.barcode,
+span.barcode {
 	font-family: "Lucida Console", Monaco, monospace;
 	padding: .5em;
 	border: .12em solid;
@@ -79,7 +82,8 @@ button.submit:hover {background-color: hsl(120, 60%, 40%);}
 button.site:hover {background-color: hsl(328, 100%, 44%);}
 button.logout:hover {background-color: hsl(33, 100%, 40%);}
 button.selected:hover,
-button.restart:hover {background-color: hsl(210, 100%, 46%);}
+button.restart:hover,
+div.admin:hover {background-color: hsl(210, 100%, 46%);}
 button.delete:hover,
 button.close:hover {background-color: hsl(0, 100%, 40%);}
 button.barcode:hover {

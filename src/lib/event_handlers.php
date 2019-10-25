@@ -203,6 +203,54 @@ function js_spec($select, array $p = NULL) {
 		$js = $cli.$exec.'solvents.php?sid='.$p[0].'&unit='.$p[1].'\', \'msg_center\', retrieveData, \'exec/retrieve.php?q=solvent\',\'index\')"';
 		break;
 
+	// Manufacturers
+	case 'manfac':
+		$js = $cli.$retr.'retrieve.php?q=manfac\', \'index\');erasePopup()"';
+		break;
+
+	// Locations
+	case 'location':
+		$js = $cli.$retr.'retrieve.php?q=location\', \'index\');erasePopup()"';
+		break;
+
+	// User rights
+	case 'rights':
+		$js = $cli.$retr.'retrieve.php?q=rights\', \'index\');erasePopup()"';
+		break;
+
+	// Inventory
+	case 'invent_start':
+		$js = $cli.'"inventoryStart()"';
+		break;
+
+	case 'invent_clear':
+		$js = $cli.'"inventoryTruncateMissing()"';
+		break;
+
+	case 'invent_location':
+		$js = $sub.$prevent.'inventoryLocation(this.loc_id.value)"';
+		break;
+
+	case 'invent_barcode':
+		$js = $sub.$prevent.'inventoryScan(this.barcode.value, this.location.value)"';
+		break;
+
+	case 'invent_missing':
+		$js = $cli.$retr.'inventory.php?q=show_missing\', \'missing_packs\');dropDown(\'missing_packs\')"';
+		break;
+
+	case 'invent_delete_missing':
+		$js = $cli.'"inventoryDeleteMissing()"';
+		break;
+
+	case 'invent_delete_pack':
+		$js = $cli.'"inventoryDeletePack('.$p[0].')"';
+		break;
+
+	case 'invent_load_missing':
+		$js = $cli.$prevent.'inventoryLoadMissing(location_select.loc_id.value)"';
+		break;
+
 	// Default
 	default:
 		return FALSE;

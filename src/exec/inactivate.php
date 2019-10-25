@@ -34,6 +34,9 @@ try {
 
 	} else { # Inactivation successful
 
+		// Delete pack from missing pack list (if applicable)
+		sql_delete_pack_missing($link, $pack_id);
+
 		$response['text'] = 'Kiszerelés törölve';
 
 		if ((sql_get_active_packs_of_batch($link, $batch_id)->num_rows) == 0) { # If there is no active packs left

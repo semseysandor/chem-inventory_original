@@ -18,7 +18,7 @@
 			<caption>Azonosítás</caption>
 			<tr>
 				<th>Kiszerelés</th>
-				<td><input type="text" id="size" autofocus required /></td>
+				<td><input type="text" id="size" required /></td>
 			</tr>
 			<tr>
 				<th>Eredeti kiszerelés</th>

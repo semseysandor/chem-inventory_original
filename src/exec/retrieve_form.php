@@ -18,15 +18,49 @@ try {
 	$query = get_query('q', TRUE, 'string');
 
 	// Security check
-	if (in_array($query, ['a_comp','e_comp', 'up_coa', 'up_msds'])) {
-		security_check('leltar', 1);
-	} elseif (in_array($query, ['a_batch','a_pack', 'e_batch', 'e_pack'])) {
-		security_check('leltar', 2);
-	} elseif (in_array($query, ['a_api', 'a_drug', 'a_liter', 'a_pk', 'e_api',
-															'e_drug', 'e_liter', 'e_pk', 'up_liter'])) {
-		security_check('api', 2);
-	} else {
-		exit;
+	switch ($query) {
+		case 'a_comp':
+		case 'e_comp':
+		case 'up_coa':
+		case 'up_msds':
+			security_check('leltar', 1);
+			break;
+
+		case 'a_batch':
+		case 'a_pack':
+		case 'e_batch':
+		case 'e_pack':
+			security_check('leltar', 2);
+			break;
+
+		case 'a_manfac':
+		case 'a_lab':
+		case 'a_place':
+		case 'a_sub':
+		case 'a_loc':
+		case 'e_manfac':
+		case 'e_lab':
+		case 'e_place':
+		case 'e_sub':
+		case 'e_loc':
+		case 'e_user':
+			security_check('leltar', 3);
+			break;
+
+		case 'a_api':
+		case 'a_drug':
+		case 'a_liter':
+		case 'a_pk':
+		case 'e_api':
+		case 'e_drug':
+		case 'e_liter':
+		case 'e_pk':
+		case 'up_liter':
+			security_check('api', 2);
+			break;
+
+		default:
+			exit;
 	}
 
 	// Add compound
@@ -131,6 +165,31 @@ try {
 		$drug_id = get_query('did');
 
 		include(ROOT.'/templates/forms/add/pk.php');
+	}
+
+	// Add manufacturer
+	if ($query == 'a_manfac') {
+		include(ROOT.'/templates/forms/add/manfac.php');
+	}
+
+	// Add lab
+	if ($query == 'a_lab') {
+		include(ROOT.'/templates/forms/add/lab.php');
+	}
+
+	// Add place
+	if ($query == 'a_place') {
+		include(ROOT.'/templates/forms/add/place.php');
+	}
+
+	// Add sub
+	if ($query == 'a_sub') {
+		include(ROOT.'/templates/forms/add/sub.php');
+	}
+
+	// Add location
+	if ($query == 'a_loc') {
+		include(ROOT.'/templates/forms/add/location.php');
 	}
 
 	// Edit compound
@@ -429,6 +488,144 @@ try {
 
 			// Upload literature form
 			include(ROOT.'/templates/forms/upload/literature.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
+	}
+
+	// Edit manufacturer
+	if ($query == 'e_manfac') {
+
+		// Get ID
+		$manfac_id = get_query('manfac_id');
+
+		// Retrieve current data from DB
+		$result = sql_get_manfac_data($link, $manfac_id);
+
+		if ($result->num_rows == 1) { # Manufacturer found
+
+			$data = $result->fetch_assoc();
+
+			// Current data
+			$name = $data['name'];
+			$is_freq = $data['is_frequent'];
+
+			// Edit manfac form
+			include(ROOT.'/templates/forms/edit/manfac.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
+	}
+
+	// Edit lab
+	if ($query == 'e_lab') {
+
+		// Get ID
+		$lab_id = get_query('lab_id');
+
+		// Retrieve current data from DB
+		$result = sql_get_lab_data($link, $lab_id);
+
+		if ($result->num_rows == 1) { # Lab found
+
+			$data = $result->fetch_assoc();
+
+			// Current data
+			$name = $data['name'];
+
+			// Edit lab form
+			include(ROOT.'/templates/forms/edit/lab.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
+	}
+
+	// Edit place
+	if ($query == 'e_place') {
+
+		// Get ID
+		$place_id = get_query('place_id');
+
+		// Retrieve current data from DB
+		$result = sql_get_place_data($link, $place_id);
+
+		if ($result->num_rows == 1) { # Place found
+
+			$data = $result->fetch_assoc();
+
+			// Current data
+			$name = $data['name'];
+
+			// Edit place form
+			include(ROOT.'/templates/forms/edit/place.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
+	}
+
+	// Edit sub
+	if ($query == 'e_sub') {
+
+		// Get ID
+		$sub_id = get_query('sub_id');
+
+		// Retrieve current data from DB
+		$result = sql_get_sub_data($link, $sub_id);
+
+		if ($result->num_rows == 1) { # Sub found
+
+			$data = $result->fetch_assoc();
+
+			// Current data
+			$name = $data['name'];
+
+			// Edit sub form
+			include(ROOT.'/templates/forms/edit/sub.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
+	}
+
+	// Edit location
+	if ($query == 'e_loc') {
+
+		// Get ID
+		$location_id = get_query('loc_id');
+
+		// Retrieve current data from DB
+		$result = sql_get_location_data($link, $location_id);
+
+		if ($result->num_rows == 1) { # Location found
+
+			$data = $result->fetch_assoc();
+
+			// Current data
+			$lab_id = $data['lab_id'];
+			$place_id = $data['place_id'];
+			$sub_id = $data['sub_id'];
+
+			// Edit location form
+			include(ROOT.'/templates/forms/edit/location.php');
+
+		} else {throw new leltar_exception('no_such_record',1);}
+	}
+
+	// Edit user
+	if ($query == 'e_user') {
+
+		// Get ID
+		$user_id = get_query('uid');
+
+		// Retrieve current data from DB
+		$result = sql_get_user_data($link, $user_id);
+
+		if ($result->num_rows == 1) { # User found
+
+			$data = $result->fetch_assoc();
+
+			// Current data
+			$name = $data['name'];
+			$chemical = $data['chemical'];
+			$api = $data['api'];
+			$solvent = $data['solvent'];
+
+			// Edit sub form
+			include(ROOT.'/templates/forms/edit/user.php');
 
 		} else {throw new leltar_exception('no_such_record',1);}
 	}

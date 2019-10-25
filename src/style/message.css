@@ -7,7 +7,6 @@
 /* Message box */
 div.message {
 	padding: .5em 1em;
-	margin: .25em 0;
 	border-left: .5em solid;
 	border-radius: .5em;
 	font-weight: bold;

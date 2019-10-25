@@ -327,5 +327,43 @@ try {
 		// Solvents
 		require(ROOT.'/templates/tables/solvents.php');
 	}
+
+	// Manufacturers
+	if ($query == 'manfac') {
+
+		$result = sql_get_manfac($link);
+
+		require(ROOT.'/templates/tables/manfac.php');
+	}
+
+	// Locations
+	if ($query == 'location') {
+
+		require(ROOT.'/templates/tables/location_header.php');
+
+		echo '<div class="block">';
+
+		$result = sql_get_lab($link);
+		require(ROOT.'/templates/tables/lab.php');
+
+		$result = sql_get_place($link);
+		require(ROOT.'/templates/tables/place.php');
+
+		$result = sql_get_sub($link);
+		require(ROOT.'/templates/tables/sub.php');
+
+		$result = sql_get_location($link);
+		require(ROOT.'/templates/tables/location.php');
+
+		echo '</div>';
+	}
+
+	// User rights
+	if ($query == 'rights') {
+
+		$result = sql_get_users($link);
+
+		require(ROOT.'/templates/tables/users.php');
+	}
 } catch (leltar_exception $e) {$e->error_handling();}
 ?>

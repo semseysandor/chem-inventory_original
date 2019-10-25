@@ -27,6 +27,11 @@
 				<td><input type="text" id="cas" pattern="[0-9]{2,7}-[0-9]{2}-[0-9]" title="xxxxxxx-xx-x"/></td>
 			</tr>
 			<tr>
+			<tr>
+				<th>SMILES</th>
+				<td><input type="text" id="smiles"/></td>
+			</tr>
+			<tr>
 				<th>Kategória</th>
 				<td><select id="subcat_id" required >
 				<option></option>

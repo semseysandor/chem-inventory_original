@@ -31,14 +31,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['data'])) {
 	}
 
 	// Security check
-	if ($selector == 'compound') {
-		security_check('leltar', 1);
-	} elseif (in_array($selector, ['batch', 'pack'])) {
-		security_check('leltar', 2);
-	} elseif (in_array($selector, ['api', 'drug', 'pk'])) {
-		security_check('api', 2);
-	} else {
-		exit;
+	switch ($selector) {
+		case 'compound':
+			security_check('leltar', 1);
+			break;
+
+		case 'batch':
+		case 'pack':
+			security_check('leltar', 2);
+			break;
+
+		case 'manfac':
+		case 'lab':
+		case 'place':
+		case 'sub':
+		case 'location':
+			security_check('leltar', 3);
+			break;
+
+		case 'api':
+		case 'drug':
+		case 'pk':
+			security_check('api', 2);
+			break;
+
+		default:
+			exit;
 	}
 
 	// Compound
@@ -75,6 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['data'])) {
 			$cas = NULL;
 		}
 
+		if (!empty($data['smiles'])) {$smiles = clean_input($data['smiles']);}
+		else {$smiles = NULL;}
+
 		if (!empty($data['oeb'])) {$oeb = intval($data['oeb']);}
 		else {$oeb = NULL;}
 
@@ -87,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['data'])) {
 		// Init
 		$chem_form = NULL;
 		$mol_weight = NULL;
-		$smiles = NULL;
 		$iupac = NULL;
 		$chem_name = NULL;
 
@@ -112,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['data'])) {
 					if ($info) {$mol_weight = $info;}
 
 					$info = cactus_get_compound_info($cas, 'smiles');
-					if ($info) {$smiles = $info;}
+					if ($info and !$smiles) {$smiles = $info;}
 
 					$info = cactus_get_compound_info($cas, 'iupac_name');
 					if ($info) {$iupac = $info;}
@@ -430,6 +450,156 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['data'])) {
 
 				if (sql_insert_pk_data($link, $drug_id, $attr_id, $value,
 															$note, $_SESSION['USER_NAME'])) {
+
+					// Successfully inserted
+					$response['text'] = 'Sikeresen hozzáadva';
+				} else {
+					$response['text'] = 'Nem sikerült hozzáadni';
+					$error_flag = TRUE;
+				}
+			}
+		}
+	}
+
+	// Manufacturer
+	if ($selector == 'manfac') {
+
+		// Sanitizing user inputs
+		if (empty($data['name']) or (clean_input($data['name']) == '')) {
+			$response['text'] = 'Név hiányzik';
+			$error_flag = TRUE;
+		} else {
+			$name = clean_input($data['name']);
+		}
+
+		if (!empty($data['is_freq'])) {$is_freq = intval($data['is_freq']);}
+		else {$is_freq = 0;}
+
+		// No errors -> valid user input -> DB
+		if (!$error_flag) {
+
+			// Check for duplicate
+			if (sql_check_manfac($link, $name)) { # There is a duplicate
+
+				$response['text'] = 'Már van ilyen gyártó';
+				$error_flag = TRUE;
+
+			} else { # No duplicate -> INSERT into DB
+
+				if (sql_insert_manfac($link, $name, $is_freq, $_SESSION['USER_NAME'])) {
+
+					// Successfully inserted
+					$response['text'] = 'Sikeresen hozzáadva';
+				} else {
+					$response['text'] = 'Nem sikerült hozzáadni';
+					$error_flag = TRUE;
+				}
+			}
+		}
+	}
+
+	// Lab, place or sub
+	if (in_array($selector, ['lab', 'place', 'sub'])) {
+
+		// Sanitizing user inputs
+		if (empty($data['name']) or (clean_input($data['name']) == '')) {
+			$response['text'] = 'Név hiányzik';
+			$error_flag = TRUE;
+		} else {
+			$name = clean_input($data['name']);
+		}
+
+		// No errors -> valid user input -> DB
+		if (!$error_flag) {
+
+			switch ($selector) {
+
+				// Laboratory
+				case 'lab':
+					if (sql_check_lab($link, $name)) { # There is a duplicate
+
+						$response['text'] = 'Már van ilyen labor';
+						$error_flag = TRUE;
+					} elseif (sql_insert_lab($link, $name, $_SESSION['USER_NAME'])) { # No duplicate -> INSERT into DB
+
+						// Successfully inserted
+						$response['text'] = 'Sikeresen hozzáadva';
+					} else {
+						$response['text'] = 'Nem sikerült hozzáadni';
+						$error_flag = TRUE;
+					}
+					break;
+
+				// Place
+				case 'place':
+					if (sql_check_place($link, $name)) { # There is a duplicate
+
+						$response['text'] = 'Már van ilyen hely';
+						$error_flag = TRUE;
+					} elseif (sql_insert_place($link, $name, $_SESSION['USER_NAME'])) { # No duplicate -> INSERT into DB
+
+						// Successfully inserted
+						$response['text'] = 'Sikeresen hozzáadva';
+					} else {
+						$response['text'] = 'Nem sikerült hozzáadni';
+						$error_flag = TRUE;
+					}
+					break;
+
+				// Sub-place
+				case 'sub':
+					if (sql_check_sub($link, $name)) { # There is a duplicate
+
+						$response['text'] = 'Már van ilyen alhely';
+						$error_flag = TRUE;
+					} elseif (sql_insert_sub($link, $name, $_SESSION['USER_NAME'])) { # No duplicate -> INSERT into DB
+
+						// Successfully inserted
+						$response['text'] = 'Sikeresen hozzáadva';
+					} else {
+						$response['text'] = 'Nem sikerült hozzáadni';
+						$error_flag = TRUE;
+					}
+					break;
+
+				default:
+					$error_flag = TRUE;
+					break;
+			}
+		}
+	}
+
+	// Location
+	if ($selector == 'location') {
+
+		// Sanitizing user inputs
+		if (empty($data['lab_id']) or (intval($data['lab_id']) < 1)) {
+			$response['text'] = 'Labor hiányzik';
+			$error_flag = TRUE;
+		} elseif (empty($data['place_id']) or (intval($data['place_id']) < 1)) {
+			$response['text'] = 'Hely hiányzik';
+			$error_flag = TRUE;
+		} elseif (empty($data['sub_id']) or (intval($data['sub_id']) < 1)) {
+			$response['text'] = 'Alhely hiányzik';
+			$error_flag = TRUE;
+		} else {
+			$lab_id = intval($data['lab_id']);
+			$place_id = intval($data['place_id']);
+			$sub_id = intval($data['sub_id']);
+		}
+
+		// No errors -> valid user input -> DB
+		if (!$error_flag) {
+
+			// Check for duplicate
+			if (sql_check_location($link, $lab_id, $place_id, $sub_id)) { # There is a duplicate
+
+				$response['text'] = 'Már van ilyen lokáció';
+				$error_flag = TRUE;
+
+			} else { # No duplicate -> INSERT into DB
+
+				if (sql_insert_location($link, $lab_id, $place_id, $sub_id, $_SESSION['USER_NAME'])) {
 
 					// Successfully inserted
 					$response['text'] = 'Sikeresen hozzáadva';

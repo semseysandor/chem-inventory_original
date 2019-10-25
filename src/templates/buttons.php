@@ -98,6 +98,12 @@ function button($button, array $p = NULL) {
 		$html .= $inbox.' Bevételezés'.$_b;
 		break;
 
+	// Inventory delete missing pack
+	case 'invent_delete':
+		$html = $s.$hover.js_spec('invent_delete_pack', [$p[0]]).'>';
+		$html .= $trash.$_s;
+		break;
+
 	// Edit
 	case 'e_comp':
 		$html = $s.$hover.js_get_form('e_comp', ['cid='.$p[0], 'mode='.$p[1]]).'>';
@@ -146,6 +152,36 @@ function button($button, array $p = NULL) {
 
 	case 'e_pk':
 		$html = $s.$hover.js_get_form('e_pk', ['pkid='.$p[0]]).'>';
+		$html .= $pencil_black.$_s;
+		break;
+
+	case 'e_manfac':
+		$html = $s.$hover.js_get_form('e_manfac', ['manfac_id='.$p[0]]).'>';
+		$html .= $pencil_black.$_s;
+		break;
+
+	case 'e_lab':
+		$html = $s.$hover.js_get_form('e_lab', ['lab_id='.$p[0]]).'>';
+		$html .= $pencil_black.$_s;
+		break;
+
+	case 'e_place':
+		$html = $s.$hover.js_get_form('e_place', ['place_id='.$p[0]]).'>';
+		$html .= $pencil_black.$_s;
+		break;
+
+	case 'e_sub':
+		$html = $s.$hover.js_get_form('e_sub', ['sub_id='.$p[0]]).'>';
+		$html .= $pencil_black.$_s;
+		break;
+
+	case 'e_loc':
+		$html = $s.$hover.js_get_form('e_loc', ['loc_id='.$p[0]]).'>';
+		$html .= $pencil_black.$_s;
+		break;
+
+	case 'e_user':
+		$html = $s.$hover.js_get_form('e_user', ['uid='.$p[0]]).'>';
 		$html .= $pencil_black.$_s;
 		break;
 
@@ -204,6 +240,31 @@ function button($button, array $p = NULL) {
 	case 'a_pk':
 		$html = $b.$site.js_get_form('a_pk', ['did='.$p[0]]).'>';
 		$html .= $plus.' PK'.$_b;
+		break;
+
+	case 'a_manfac':
+		$html = $b.$site_m.js_get_form('a_manfac').'>';
+		$html .= $plus.' Gyártó'.$_b;
+		break;
+
+	case 'a_lab':
+		$html = $b.$site_m.js_get_form('a_lab').'>';
+		$html .= $plus.' Labor'.$_b;
+		break;
+
+	case 'a_place':
+		$html = $b.$site_m.js_get_form('a_place').'>';
+		$html .= $plus.' Hely'.$_b;
+		break;
+
+	case 'a_sub':
+		$html = $b.$site_m.js_get_form('a_sub').'>';
+		$html .= $plus.' Alhely'.$_b;
+		break;
+
+	case 'a_loc':
+		$html = $b.$site_m.js_get_form('a_loc').'>';
+		$html .= $plus.' Lokáció'.$_b;
 		break;
 
 	// Upload

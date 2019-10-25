@@ -408,4 +408,250 @@ function sql_insert_drug_product($link, $api_id, $name, $name_alt, $dosage,
 		return FALSE;
 	}
 }
+
+/**
+ * Insert new manufacturer
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ * @param		int					$is_freq
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_insert_manfac($link, $name, $is_freq, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	INSERT INTO
+		leltar_manfac
+		(name,
+		is_frequent,
+		last_mod_by)
+	VALUES (?, ?, ?)
+	');
+	$stmt->bind_param('sis', $name, $is_freq, $user_name);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Insert new lab
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_insert_lab($link, $name, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	INSERT INTO
+		leltar_loc_lab
+		(name,
+		last_mod_by)
+	VALUES (?, ?)
+	');
+	$stmt->bind_param('ss', $name, $user_name);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Insert new place
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_insert_place($link, $name, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	INSERT INTO
+		leltar_loc_place
+		(name,
+		last_mod_by)
+	VALUES (?, ?)
+	');
+	$stmt->bind_param('ss', $name, $user_name);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Insert new sub
+ *
+ * @param		mysqli_link	$link
+ * @param		string			$name
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_insert_sub($link, $name, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	INSERT INTO
+		leltar_loc_sub
+		(name,
+		last_mod_by)
+	VALUES (?, ?)
+	');
+	$stmt->bind_param('ss', $name, $user_name);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Insert new location
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$lab_id
+ * @param		int					$place_id
+ * @param		int					$sub_id
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_insert_location($link, $lab_id, $place_id, $sub_id, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	INSERT INTO
+		leltar_location
+		(loc_lab_id,
+		loc_place_id,
+		loc_sub_id,
+		last_mod_by)
+	VALUES (?, ?, ?, ?)
+	');
+	$stmt->bind_param('iiis', $lab_id, $place_id, $sub_id, $user_name);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Append pack to missing list
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$pack_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_insert_pack_missing($link, $pack_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	INSERT INTO
+		temp_missing
+		(pack_id)
+	VALUES (?)
+	');
+	$stmt->bind_param('i', $pack_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Delete pack from missing list
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$pack_id
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_delete_pack_missing($link, $pack_id) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	DELETE FROM
+		temp_missing
+	WHERE temp_missing.pack_id = ?
+	');
+	$stmt->bind_param('i', $pack_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
 ?>

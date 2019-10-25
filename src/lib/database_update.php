@@ -521,4 +521,242 @@ function sql_update_solvent($link, $solvent_id, $unit, $user_name) {
 		return FALSE;
 	}
 }
+
+/**
+ * UPDATE manfac data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$manfac_id
+ * @param		string			$name
+ * @param		int					$is_freq
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_manfac_data($link, $manfac_id, $name, $is_freq, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		leltar_manfac
+	SET
+		name = ?,
+		is_frequent = ?,
+		last_mod_by = ?
+	WHERE
+		leltar_manfac.manfac_id = ?
+	');
+	$stmt->bind_param('sisi', $name, $is_freq, $user_name, $manfac_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * UPDATE lab data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$lab_id
+ * @param		string			$name
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_lab_data($link, $lab_id, $name, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		leltar_loc_lab
+	SET
+		name = ?,
+		last_mod_by = ?
+	WHERE
+		leltar_loc_lab.loc_lab_id = ?
+	');
+	$stmt->bind_param('ssi', $name, $user_name, $lab_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * UPDATE place data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$place_id
+ * @param		string			$name
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_place_data($link, $place_id, $name, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		leltar_loc_place
+	SET
+		name = ?,
+		last_mod_by = ?
+	WHERE
+		leltar_loc_place.loc_place_id = ?
+	');
+	$stmt->bind_param('ssi', $name, $user_name, $place_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * UPDATE sub data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$sub_id
+ * @param		string			$name
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_sub_data($link, $sub_id, $name, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		leltar_loc_sub
+	SET
+		name = ?,
+		last_mod_by = ?
+	WHERE
+		leltar_loc_sub.loc_sub_id = ?
+	');
+	$stmt->bind_param('ssi', $name, $user_name, $sub_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * UPDATE location data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$location_id
+ * @param		int					$lab_id
+ * @param		int					$place_id
+ * @param		int					$sub_id
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_location_data($link, $location_id, $lab_id, $place_id, $sub_id, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		leltar_location
+	SET
+		loc_lab_id = ?,
+		loc_place_id = ?,
+		loc_sub_id = ?,
+		last_mod_by = ?
+	WHERE
+		leltar_location.location_id = ?
+	');
+	$stmt->bind_param('iiisi', $lab_id, $place_id, $sub_id, $user_name, $location_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * UPDATE user data
+ *
+ * @param		mysqli_link	$link
+ * @param		int					$user_id
+ * @param		int					$chemical
+ * @param		int					$api
+ * @param		int					$solvent
+ * @param		string			$user_name (= $_SESSION['USER_NAME'])
+ *
+ * @throws	leltar_exception if SQL query failed
+ *
+ * @return	bool
+ *	TRUE		on success
+ */
+function sql_update_user_data($link, $user_id, $chemical, $api, $solvent, $user_name) {
+
+	$stmt = $link->init();
+	$stmt = $link->prepare('
+	UPDATE
+		main_users
+	SET
+		right_level_leltar = ?,
+		right_level_api = ?,
+		right_level_solvent = ?,
+		last_mod_by = ?
+	WHERE
+		main_users.user_id = ?
+	');
+	$stmt->bind_param('iiisi', $chemical, $api, $solvent, $user_name, $user_id);
+
+	if (!($stmt->execute())) {
+		throw new leltar_exception('sql_fail', 1);
+	}
+
+	if ($stmt->affected_rows == 1) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
 ?>

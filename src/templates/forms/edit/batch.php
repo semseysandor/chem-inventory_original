@@ -10,6 +10,7 @@
 	<span class="float-right"><?=button('erase_popup')?></span>
 	<span class="float-right"><?=button('submit')?></span>
 </div>
+	<input type="hidden" id="comp_id" value="<?=$comp_id?>"/>
 	<input type="hidden" id="batch_id" value="<?=$batch_id?>"/>
 	<input type="hidden" id="selector" value="batch"/>
 	<div class="block">

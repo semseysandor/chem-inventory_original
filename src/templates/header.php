@@ -38,12 +38,11 @@ switch ($_SESSION['USER_RIGHT_LELTAR']) {
 				<span> <?=date('Y. M d.')?></span>
 			</div>
 			<div class="rwd">
-				<i class="fas fa-user"></i>
-				<span> <?=$_SESSION['USER_NAME']?></span>
+				<span><?=right_level_icon($_SESSION['USER_RIGHT_LELTAR'])?></span>
+				<span><?=$_SESSION['USER_NAME']?></span>
 			</div>
 			<div class="rwd">
-				<i class="fas fa-user-shield"></i>
-				<span> <?=$level?></span>
+				<span>(<?=right_level_text($_SESSION['USER_RIGHT_LELTAR'])?>)</span>
 			</div>
 			<div class="rwd">
 				<button class="button logout fa-lg" <?=js_spec('logout')?>>
