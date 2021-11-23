@@ -1,5 +1,7 @@
 # README
 
+NOTE: This repo is archived, read-only access is provided.
+
 ## ChemInventory
 
 This is a chemical inventory suitable for a medium-sized company.
